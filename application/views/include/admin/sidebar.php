@@ -11,11 +11,35 @@
 
                <li class="treeview">
                   <a href="#">
-                    <i class="fa fa-list-alt"></i></i> <span>Menu</span><i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-list-alt"></i></i> <span>Master</span><i class="fa fa-angle-left pull-right"></i>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Sub Menu</a></li>
-                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Sub Menu</a></li>
+                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Kelompok</a></li>
+                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Barang</a></li>
+                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Pelanggan</a></li>
+                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>User</a></li>
+                  </ul>
+               </li>
+
+               <li class="treeview">
+                  <a href="#">
+                    <i class="fa fa-list-alt"></i></i> <span>Transaksi</span><i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Penjualan</a></li>
+                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Persediaan</a></li>
+                  </ul>
+               </li>
+
+               <li class="treeview">
+                  <a href="#">
+                    <i class="fa fa-list-alt"></i></i> <span>Laporan</span><i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Laporan Barang</a></li>
+                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Laporan Penjualan</a></li>
+                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Laporan Persediaan</a></li>
+
                   </ul>
                </li>
     </ul>
