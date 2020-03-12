@@ -6,8 +6,8 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
           <li>
-                       <a href="<?php echo base_url(); ?>admin"><i class="fa fa-dashboard" aria-hidden="true"></i><span>Dashboard</span></a>
-                    </li>
+              <a href="<?php echo base_url(); ?>admin"><i class="fa fa-dashboard" aria-hidden="true"></i><span>Dashboard</span></a>
+           </li>
 
                <li class="treeview">
                   <a href="#">
