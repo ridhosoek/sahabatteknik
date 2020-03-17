@@ -16,8 +16,8 @@
                   <ul class="treeview-menu">
                     <li><a href="<?php echo base_url();?>admin/kelompok/"><i class="fa fa-circle-o text-aqua"></i>Kelompok</a></li>
                     <li><a href="<?php echo base_url();?>admin/barang"><i class="fa fa-circle-o text-aqua"></i>Barang</a></li>
-                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Pelanggan</a></li>
-                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>User</a></li>
+                    <li><a href="<?php echo base_url();?>admin/pelanggan"><i class="fa fa-circle-o text-aqua"></i>Pelanggan</a></li>
+                    <li><a href="<?php echo base_url();?>admin/user"><i class="fa fa-circle-o text-aqua"></i>User</a></li>
                   </ul>
                </li>
 
