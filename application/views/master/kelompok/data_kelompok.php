@@ -21,19 +21,22 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                <th scope="col">#</th>
                 <th scope="col">ID Kelompok</th>
                 <th scope="col">Nama Kelompok</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
+            <?php foreach ($kelompok as $data): ?>    
+            <tr>
+                <td width="150">
+								  <?php echo $data->ID_KELOMPOK ?>
+								</td>
+								<td>
+									<?php echo $data->NAMA_KELOMPOK ?>
+                </td>
                 <td>
-                    <a href=""><button type="button" class="btn btn-primary btn-xs">
+                    <a href="<?php echo site_url('admin/editkelompok/'.$kelompok->ID_KELOMPOK) ?>"><button type="button" class="btn btn-primary btn-xs">
                         Edit
                     </button></a>
                     <a href=""><button type="button" class="btn btn-danger btn-xs">
@@ -41,6 +44,7 @@
                     </button></a>
                 </td>
                 </tr>
+                <?php endforeach; ?>
             </tbody>
             <p>
                 <a href="<?php echo base_url();?>admin/tambahkelompok/" class="btn btn-primary">Tambah Data</a>
