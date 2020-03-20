@@ -29,27 +29,33 @@
          <form method="post" enctype="multipart/form-data" >
             <div class="form-group">
               <label>ID Kelompok</label>
-              <input type="text" name="idkelompok" required="" class="form-control">
+              <input class="form-control <?php echo form_error('idkelompok') ? 'is-invalid':'' ?>"
+			  type="text" name="idkelompok" value="<?php echo $barang->ID_KELOMPOK ?>" />
             </div>
             <div class="form-group">
               <label>ID Barang</label>
-              <input type="text" name="idbarang" placeholder="" required="" class="form-control">
+              <input class="form-control <?php echo form_error('idbarang') ? 'is-invalid':'' ?>"
+			  type="text" name="idbarang" value="<?php echo $barang->ID_BARANG ?>" />
             </div>
             <div class="form-group">
               <label>Nama Barang</label>
-              <input type="text" name="namabarang" placeholder="Isi Nama Barang" required="" class="form-control">
+              <input class="form-control <?php echo form_error('namabarang') ? 'is-invalid':'' ?>"
+			  type="text" name="namabarang" value="<?php echo $barang->NAMA_BARANG ?>" />
             </div>
             <div class="form-group">
               <label>Satuan</label>
-              <input type="text" name="satuan" placeholder="Isi Satuan" required="" class="form-control">
+              <input class="form-control <?php echo form_error('satuan') ? 'is-invalid':'' ?>"
+			  type="text" name="satuan" value="<?php echo $barang->SATUAN ?>" />
             </div>
             <div class="form-group">
               <label>Harga</label>
-              <input type="text" name="harga" placeholder="Isi Harga" required="" class="form-control">
+              <input class="form-control <?php echo form_error('harga') ? 'is-invalid':'' ?>"
+			  type="text" name="harga" value="<?php echo $barang->HARGA ?>" />
             </div>
             <div class="form-group">
             <label>Qty</label>
-				    <input type="number" name="qty" placeholder="isi qty" required="" class="form-control">
+            <input class="form-control <?php echo form_error('qty') ? 'is-invalid':'' ?>"
+			  type="text" name="qty" value="<?php echo $barang->QTY ?>" />
 			      </div>
           <input class="btn btn-success" type="submit" name="btn" value="Save" />
           </form>

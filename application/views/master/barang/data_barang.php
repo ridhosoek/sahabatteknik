@@ -21,7 +21,6 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                <th scope="col">#</th>
                 <th scope="col">ID Kelompok</th>
                 <th scope="col">ID Barang</th>
                 <th scope="col">Nama Barang</th>
@@ -32,23 +31,33 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>fustal</td>
-                <td>PCS</td>
-                <td>400.000</td>
-                <td>1</td>
-                <td>
-                    <a href=""><button type="button" class="btn btn-primary btn-xs">
-                        Edit
-                    </button></a>
-                    <a href=""><button type="button" class="btn btn-danger btn-xs">
-                        Hapus
-                    </button></a>
+            <?php foreach ($barang as $data): ?>
+            <tr>
+                <td width="150">
+								  <?php echo $data->ID_KELOMPOK ?>
+								</td>
+								<td>
+									<?php echo $data->ID_BARANG ?>
                 </td>
-                </tr>
+                <td>
+									<?php echo $data->NAMA_BARANG ?>
+                </td>
+                <td>
+									<?php echo $data->SATUAN ?>
+                </td>
+                <td>
+									<?php echo $data->HARGA ?>
+                </td>
+                <td>
+									<?php echo $data->QTY ?>
+                </td>
+                <td>
+                <a href=<?php echo site_url('admin/editbarang/'.$data->ID_BARANG) ?>>
+                    <button type="button" class="btn btn-primary btn-xs">Edit</button></a>
+                    <a onclick="deleteConfirm('<?php echo site_url('admin/deletebarang/'.$data->ID_BARANG) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
             </tbody>
             <p>
                 <a href="<?php echo base_url();?>admin/tambahbarang/" class="btn btn-primary">Tambah Data</a>
@@ -61,5 +70,11 @@
 
 
     </section>
+    <script>
+      function deleteConfirm(url){
+	    $('#btn-delete').attr('href', url);
+	    $('#deleteModal').modal();
+      }
+    </script>
     <!-- /.content -->
   </div>
