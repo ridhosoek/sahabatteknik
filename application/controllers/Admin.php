@@ -60,12 +60,15 @@ class Admin extends CI_Controller {
         $this->load->view('include/admin/footer.php');
     }
 
-    public function delete($id=null)
+    public function deletekelompok($id=null)
     {
         if (!isset($id)) show_404();
         
         if ($this->kelompok_model->delete($id)) {
-            redirect(site_url('master/kelompok'));
+            $data["kelompok"] = $this->kelompok_model->getAll();
+            $this->load->view('include/admin/header.php');
+            $this->load->view('master/kelompok/data_kelompok',$data);
+            $this->load->view('include/admin/footer.php');
         }
     }
 

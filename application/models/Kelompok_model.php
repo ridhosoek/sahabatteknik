@@ -45,8 +45,8 @@ class Kelompok_model extends CI_Model
     public function update()
     {
         $post = $this->input->post();
-        $this->product_id = $post["idkelompok"];
-        $this->name = $post["namakelompok"];
+        $this->ID_KELOMPOK = $post["idkelompok"];
+        $this->NAMA_KELOMPOK = $post["namakelompok"];
         return $this->db->update($this->_table, $this, array('ID_KELOMPOK' => $post['idkelompok']));
     }
 

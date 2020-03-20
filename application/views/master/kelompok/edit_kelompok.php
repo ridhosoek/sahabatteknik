@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
               <label>Nama Kelompok</label>
-              <input type="text" name="namakelompok" placeholder="Isi Nama Kelompok" required="" class="form-control">
+              <input type="text" name="namakelompok" placeholder="Isi Nama Kelompok" required="" class="form-control" value="<?php echo $kelompok->NAMA_KELOMPOK ?>">
             </div>
             <input class="btn btn-success" type="submit" name="btn" value="Save" />
           </form>

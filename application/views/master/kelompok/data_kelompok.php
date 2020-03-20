@@ -36,14 +36,11 @@
 									<?php echo $data->NAMA_KELOMPOK ?>
                 </td>
                 <td>
-                    <a href="<?php echo site_url('admin/editkelompok/'.$kelompok->ID_KELOMPOK) ?>"><button type="button" class="btn btn-primary btn-xs">
-                        Edit
-                    </button></a>
-                    <a href=""><button type="button" class="btn btn-danger btn-xs">
-                        Hapus
-                    </button></a>
+                    <a href=<?php echo site_url('admin/editkelompok/'.$data->ID_KELOMPOK) ?>>
+                    <button type="button" class="btn btn-primary btn-xs">Edit</button></a>
+                    <a onclick="deleteConfirm('<?php echo site_url('admin/deletekelompok/'.$data->ID_KELOMPOK) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
                 </td>
-                </tr>
+            </tr>
                 <?php endforeach; ?>
             </tbody>
             <p>
@@ -54,8 +51,13 @@
         <!-- /.box-body -->
       </div>
       
-
-
     </section>
+    <script>
+      function deleteConfirm(url){
+	    $('#btn-delete').attr('href', url);
+	    $('#deleteModal').modal();
+      }
+    </script>
+
     <!-- /.content -->
   </div>
