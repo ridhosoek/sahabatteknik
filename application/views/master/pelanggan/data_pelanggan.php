@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Pelanggan
+        Data pelanggan
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -21,31 +21,35 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">ID Pelanggan</th>
-                <th scope="col">Nama Pelanggan</th>
+                <th scope="col">ID pelanggan</th>
+                <th scope="col">Nama pelanggan</th>
                 <th scope="col">Alamat</th>
-                <th scope="col">Nomor HP</th>
+                <th scope="col">Nomor Hp</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>001</td>
-                <td>Ridho</td>
-                <td>jl.bilal</td>
-                <td>0821 xxxx xxxx</td>
-                <td>1</td>
-                <td>
-                    <a href=""><button type="button" class="btn btn-primary btn-xs">
-                        Edit
-                    </button></a>
-                    <a href=""><button type="button" class="btn btn-danger btn-xs">
-                        Hapus
-                    </button></a>
+            <?php foreach ($pelanggan as $data): ?>    
+            <tr>
+                <td width="150">
+								  <?php echo $data->ID_PELANGGAN ?>
+								</td>
+								<td>
+									<?php echo $data->NAMA_PELANGGAN ?>
                 </td>
-                </tr>
+                <td>
+									<?php echo $data->ALAMAT ?>
+                </td>
+                <td>
+									<?php echo $data->NOMOR_HP ?>
+                </td>
+                <td>
+                    <a href=<?php echo site_url('admin/editpelanggan/'.$data->ID_pelanggan) ?>>
+                    <button type="button" class="btn btn-primary btn-xs">Edit</button></a>
+                    <a onclick="deleteConfirm('<?php echo site_url('admin/deletepelanggan/'.$data->ID_PELANGGAN) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
+                </td>
+            </tr>
+                <?php endforeach; ?>
             </tbody>
             <p>
                 <a href="<?php echo base_url();?>admin/tambahpelanggan/" class="btn btn-primary">Tambah Data</a>
@@ -55,8 +59,13 @@
         <!-- /.box-body -->
       </div>
       
-
-
     </section>
+    <script>
+      function deleteConfirm(url){
+	    $('#btn-delete').attr('href', url);
+	    $('#deleteModal').modal();
+      }
+    </script>
+
     <!-- /.content -->
   </div>

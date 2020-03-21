@@ -7,6 +7,8 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->load->model("kelompok_model");
         $this->load->model("barang_model");
+        $this->load->model("pelanggan_model");
+        $this->load->model("user_model");
         $this->load->library('form_validation');
     }
 
@@ -128,24 +130,112 @@ class Admin extends CI_Controller {
     }
 
     public function pelanggan(){
+        $data["pelanggan"] = $this->pelanggan_model->getAll();
         $this->load->view('include/admin/header.php');
-        $this->load->view('master/pelanggan/data_pelanggan');
+        $this->load->view('master/pelanggan/data_pelanggan',$data);
         $this->load->view('include/admin/footer.php');
     }
+
     public function tambahpelanggan(){
         $this->load->view('include/admin/header.php');
+
+        $pelanggan = $this->pelanggan_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($pelanggan->rules());
+
+        if ($validation->run()) {
+            $pelanggan->save();
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+        }
+
+
         $this->load->view('master/pelanggan/tambah_pelanggan');
         $this->load->view('include/admin/footer.php');
     }
-    public function user(){
+    
+    public function editpelanggan($id = null)
+    {
         $this->load->view('include/admin/header.php');
-        $this->load->view('master/user/data_user');
+        if (!isset($id)) redirect('master/pelanggan');
+       
+        $pelanggan = $this->pelanggan_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($pelanggan->rules());
+
+        if ($validation->run()) {
+            $pelanggan->update();
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+        }
+
+        $data["pelanggan"] = $pelanggan->getById($id);
+        if (!$data["pelanggan"]) show_404();
+        
+        $this->load->view("master/pelanggan/edit_pelanggan", $data);
+        $this->load->view('include/admin/footer.php');
+    }
+    public function deletepelanggan($id=null)
+    {
+        if (!isset($id)) show_404();
+        
+        if ($this->pelanggan_model->delete($id)) {
+            $data["pelanggan"] = $this->pelanggan_model->getAll();
+            $this->load->view('include/admin/header.php');
+            $this->load->view('master/pelanggan/data_pelanggan',$data);
+            $this->load->view('include/admin/footer.php');
+        }
+    }
+
+    public function user(){
+        $data["user"] = $this->kelompok_model->getAll();
+        $this->load->view('include/admin/header.php');
+        $this->load->view('master/user/data_user', $data);
         $this->load->view('include/admin/footer.php');
     }
     public function tambahuser(){
         $this->load->view('include/admin/header.php');
+
+        $user = $this->user_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($user->rules());
+
+        if ($validation->run()) {
+            $user->save();
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+        }
         $this->load->view('master/user/tambah_user');
         $this->load->view('include/admin/footer.php');
     }
-}
 
+    public function edituser($id = null)
+    {
+        $this->load->view('include/admin/header.php');
+        if (!isset($id)) redirect('master/user');
+       
+        $user = $this->user_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($user->rules());
+
+        if ($validation->run()) {
+            $user->update();
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+        }
+
+        $data["user"] = $user->getById($id);
+        if (!$data["user"]) show_404();
+        
+        $this->load->view("master/user/edit_user", $data);
+        $this->load->view('include/admin/footer.php');
+    }
+
+    public function deleteuser($id=null)
+    {
+        if (!isset($id)) show_404();
+        
+        if ($this->user_model->delete($id)) {
+            $data["user"] = $this->user_model->getAll();
+            $this->load->view('include/admin/header.php');
+            $this->load->view('master/user/data_user',$data);
+            $this->load->view('include/admin/footer.php');
+        }
+}
+}

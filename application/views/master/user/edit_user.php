@@ -28,12 +28,16 @@
         </p>
         <form method="post" enctype="multipart/form-data" >
             <div class="form-group">
-              <label>id user</label>
-              <input type="text" name="iduser" required="" class="form-control">
+              <label>ID User</label>
+              <input class="form-control <?php echo form_error('iduser') ? 'is-invalid':'' ?>"
+			  type="text" name="iduser" value="<?php echo $user->ID_USER ?>" />
+			<div class="invalid-feedback">
+			<?php echo form_error('name') ?>
+			</div>
             </div>
             <div class="form-group">
               <label>password</label>
-              <input type="text" name="password" placeholder="Isi password" required="" class="form-control">
+              <input type="text" name="password" placeholder="Isi password" required="" class="form-control" value="<?php echo $user->PASSWORD ?>">
             </div>
             <input class="btn btn-success" type="submit" name="btn" value="Save" />
           </form>

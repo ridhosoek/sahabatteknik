@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data User
+        data user
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -21,26 +21,27 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                <th scope="col">#</th>
                 <th scope="col">ID User</th>
                 <th scope="col">Password</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>
-                    <a href=""><button type="button" class="btn btn-primary btn-xs">
-                        Edit
-                    </button></a>
-                    <a href=""><button type="button" class="btn btn-danger btn-xs">
-                        Hapus
-                    </button></a>
+            <?php foreach ($user as $data): ?>    
+            <tr>
+                <td width="150">
+								  <?php echo $data->ID_USER ?>
+								</td>
+								<td>
+									<?php echo $data->PASSWORD ?>
                 </td>
-                </tr>
+                <td>
+                    <a href=<?php echo site_url('admin/edituser/'.$data->ID_USER) ?>>
+                    <button type="button" class="btn btn-primary btn-xs">Edit</button></a>
+                    <a onclick="deleteConfirm('<?php echo site_url('admin/deleteuser/'.$data->ID_USER) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
+                </td>
+            </tr>
+                <?php endforeach; ?>
             </tbody>
             <p>
                 <a href="<?php echo base_url();?>admin/tambahuser/" class="btn btn-primary">Tambah Data</a>
@@ -50,8 +51,13 @@
         <!-- /.box-body -->
       </div>
       
-
-
     </section>
+    <script>
+      function deleteConfirm(url){
+	    $('#btn-delete').attr('href', url);
+	    $('#deleteModal').modal();
+      }
+    </script>
+
     <!-- /.content -->
   </div>

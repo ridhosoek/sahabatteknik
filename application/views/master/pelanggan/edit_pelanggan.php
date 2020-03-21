@@ -23,34 +23,39 @@
 					<?php echo $this->session->flashdata('success'); ?>
 				</div>
 				<?php endif; ?>
-         <p>
-           <a href="<?php echo base_url();?>admin/kelompok/" class="btn btn-danger">Kembali</a>
-         </p>
-        <form method="post">
+        <p>
+          <a href="<?php echo base_url();?>admin/kelompok/" class="btn btn-danger">Kembali</a>
+        </p>
+        <form method="post" enctype="multipart/form-data" >
             <div class="form-group">
               <label>ID Pelanggan</label>
-              <input type="text" name="judul" required="" class="form-control">
+              <input class="form-control <?php echo form_error('idpelanggan') ? 'is-invalid':'' ?>"
+			  type="text" name="idpelanggan" value="<?php echo $pelanggan->ID_PELANGGAN ?>" />
+			<div class="invalid-feedback">
+			<?php echo form_error('name') ?>
+			</div>
             </div>
             <div class="form-group">
               <label>Nama Pelanggan</label>
-              <input type="text" name="judul" placeholder="Isi Nama Pelanggan" required="" class="form-control">
+              <input class="form-control <?php echo form_error('namapelanggan') ? 'is-invalid':'' ?>"
+			  type="text" name="namapelanggan" value="<?php echo $pelanggan->NAMA_PELANGGAN ?>" />
             </div>
             <div class="form-group">
               <label>Alamat</label>
-              <input type="text" name="judul" placeholder="Isi Alamat" required="" class="form-control">
+              <input class="form-control <?php echo form_error('alamat') ? 'is-invalid':'' ?>"
+			  type="text" name="alamat" value="<?php echo $pelanggan->ALAMAT ?>" />
             </div>
             <div class="form-group">
-              <label>Nomor HP</label>
-              <input type="text" name="judul" placeholder="Isi Nomor HP" required="" class="form-control">
+              <label>Nomor Hp</label>
+              <input class="form-control <?php echo form_error('nomorhp') ? 'is-invalid':'' ?>"
+			  type="text" name="nomorhp" value="<?php echo $pelanggan->NOMOR_HP ?>" />
             </div>
-            <button class="btn btn-primary" type="submit">Simpan</button>
+            <input class="btn btn-success" type="submit" name="btn" value="Save" />
           </form>
         </div>
         <!-- /.box-body -->
       </div>
       
-
-
     </section>
     <!-- /.content -->
   </div>
