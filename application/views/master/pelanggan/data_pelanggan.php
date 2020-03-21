@@ -44,7 +44,7 @@
 									<?php echo $data->NOMOR_HP ?>
                 </td>
                 <td>
-                    <a href=<?php echo site_url('admin/editpelanggan/'.$data->ID_pelanggan) ?>>
+                    <a href=<?php echo site_url('admin/editpelanggan/'.$data->ID_PELANGGAN) ?>>
                     <button type="button" class="btn btn-primary btn-xs">Edit</button></a>
                     <a onclick="deleteConfirm('<?php echo site_url('admin/deletepelanggan/'.$data->ID_PELANGGAN) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
                 </td>

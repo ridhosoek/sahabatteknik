@@ -186,7 +186,7 @@ class Admin extends CI_Controller {
     }
 
     public function user(){
-        $data["user"] = $this->kelompok_model->getAll();
+        $data["user"] = $this->user_model->getAll();
         $this->load->view('include/admin/header.php');
         $this->load->view('master/user/data_user', $data);
         $this->load->view('include/admin/footer.php');

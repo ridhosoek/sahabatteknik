@@ -24,26 +24,26 @@
 				</div>
 				<?php endif; ?>
          <p>
-           <a href="<?php echo base_url();?>admin/kelompok/" class="btn btn-danger">Kembali</a>
+           <a href="<?php echo base_url();?>admin/pelanggan/" class="btn btn-danger">Kembali</a>
          </p>
         <form method="post">
             <div class="form-group">
               <label>ID Pelanggan</label>
-              <input type="text" name="judul" required="" class="form-control">
+              <input type="text" name="idpelanggan" required="" class="form-control">
             </div>
             <div class="form-group">
               <label>Nama Pelanggan</label>
-              <input type="text" name="judul" placeholder="Isi Nama Pelanggan" required="" class="form-control">
+              <input type="text" name="namapelanggan" placeholder="Isi Nama Pelanggan" required="" class="form-control">
             </div>
             <div class="form-group">
               <label>Alamat</label>
-              <input type="text" name="judul" placeholder="Isi Alamat" required="" class="form-control">
+              <input type="text" name="alamat" placeholder="Isi Alamat" required="" class="form-control">
             </div>
             <div class="form-group">
               <label>Nomor HP</label>
-              <input type="text" name="judul" placeholder="Isi Nomor HP" required="" class="form-control">
+              <input type="text" name="nomorhp" placeholder="Isi Nomor HP" required="" class="form-control">
             </div>
-            <button class="btn btn-primary" type="submit">Simpan</button>
+            <input class="btn btn-success" type="submit" name="btn" value="Save" />
           </form>
         </div>
         <!-- /.box-body -->
