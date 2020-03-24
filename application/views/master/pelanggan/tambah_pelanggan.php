@@ -24,12 +24,12 @@
 				</div>
 				<?php endif; ?>
          <p>
-           <a href="<?php echo base_url();?>admin/kelompok/" class="btn btn-danger">Kembali</a>
+           <a href="<?php echo base_url();?>admin/pelanggan/" class="btn btn-danger">Kembali</a>
          </p>
         <form method="post">
             <div class="form-group">
               <label>ID Pelanggan</label>
-              <input type="text" name="judul" required="" class="form-control">
+              <input type="text" name="judul" placeholder="ID pelanggan" required="" class="form-control">
             </div>
             <div class="form-group">
               <label>Nama Pelanggan</label>

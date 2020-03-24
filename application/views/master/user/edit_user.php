@@ -28,7 +28,7 @@
         </p>
         <form method="post" enctype="multipart/form-data" >
             <div class="form-group">
-              <label>ID User</label>
+              <label>id user</label>
               <input class="form-control <?php echo form_error('iduser') ? 'is-invalid':'' ?>"
 			  type="text" name="iduser" value="<?php echo $user->ID_USER ?>" />
 			<div class="invalid-feedback">
