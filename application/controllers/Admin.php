@@ -242,5 +242,12 @@ class Admin extends CI_Controller {
             $this->load->view('master/user/data_user',$data);
             $this->load->view('include/admin/footer.php');
         }
-}
+    }
+
+    public function penjualan(){
+        // $data["user"] = $this->user_model->getAll();
+        $this->load->view('include/admin/header.php');
+        $this->load->view('transaksi/penjualan/data_penjualan');
+        $this->load->view('include/admin/footer.php');
+    }
 }

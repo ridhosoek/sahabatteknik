@@ -26,7 +26,7 @@
                     <i class="fa fa-shopping-cart"></i></i> <span>Transaksi</span><i class="fa fa-angle-left pull-right"></i>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Penjualan</a></li>
+                    <li><a href="<?php echo base_url();?>admin/penjualan"><i class="fa fa-circle-o text-aqua"></i>Penjualan</a></li>
                     <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Persediaan</a></li>
                   </ul>
                </li>
