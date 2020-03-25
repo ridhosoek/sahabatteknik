@@ -24,7 +24,7 @@
 				</div>
 				<?php endif; ?>
         <p>
-          <a href="<?php echo base_url();?>admin/kelompok/" class="btn btn-danger">Kembali</a>
+          <a href="<?php echo base_url();?>admin/pelanggan/" class="btn btn-danger">Kembali</a>
         </p>
         <form method="post" enctype="multipart/form-data" >
             <div class="form-group">

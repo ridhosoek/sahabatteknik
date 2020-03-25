@@ -3,6 +3,7 @@
 class Barang_model extends CI_Model
 {
     private $_table = "barang"; //nama tabel
+    // private $_tableK = "kelompok"; //nama tabel
 
     // nama kolom di tabel, harus sama huruf besar dan huruf kecilnya!
     public $ID_KELOMPOK;
@@ -47,7 +48,12 @@ class Barang_model extends CI_Model
     {
         return $this->db->get($this->_table)->result();
     }
-    
+
+    // public function getKelompok()
+    // {
+    //     return $this->db->get($this->_tableK)->result();
+    // }
+   
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["ID_BARANG" => $id])->row();

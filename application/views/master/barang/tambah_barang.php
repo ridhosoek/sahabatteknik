@@ -29,8 +29,13 @@
          <form method="post" enctype="multipart/form-data" >
             <div class="form-group">
               <label>ID Kelompok</label>
-              <input type="text" name="idkelompok" required="" class="form-control">
-            </div>
+              <select name="idkelompok" class ="form-control">
+	            <option value="">- pilih -</option>
+              <?php foreach ($kelompok as $data): ?>
+                <option value="<?php echo $data->ID_KELOMPOK ?>"><?php echo $data->NAMA_KELOMPOK ?></option>
+              <?php endforeach; ?>
+	            </select>
+          </div>
             <div class="form-group">
               <label>ID Barang</label>
               <input type="text" name="idbarang" placeholder="" required="" class="form-control">

@@ -61,7 +61,7 @@ class Pelanggan_model extends CI_Model
         $this->NAMA_PELANGGAN = $post["namapelanggan"];
         $this->ALAMAT = $post["alamat"];
         $this->NOMOR_HP = $post["nomorhp"];
-        return $this->db->update($this->_table, $this, array('ID_PELANGGAN' => $post['idbpelanggan']));
+        return $this->db->update($this->_table, $this, array('ID_PELANGGAN' => $post['idpelanggan']));
     }
 
     public function delete($id)

@@ -13,7 +13,7 @@ class User_model extends CI_Model
     {
         return [
             ['field' => 'iduser',
-            'label' => 'ID user',
+            'label' => 'id user',
             'rules' => 'required'],
 
             ['field' => 'password',
