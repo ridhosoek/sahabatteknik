@@ -55,39 +55,42 @@
             <form method="post" enctype="multipart/form-data" >
                 <div class="form-group">
                     <label>ID Barang</label>
-                    <select name="idbarang[]" class ="form-control" id="idBarang">
-	                <option value="">- pilih -</option>
-                    <?php foreach ($barang as $data): ?>
-                    <option value="<?php echo $data->ID_BARANG ?>"><?php echo $data->ID_BARANG ?></option>
-                    <?php endforeach; ?>
+                    <select name="idbarang[]" id="idBarang" class ="form-control">
+						<option value="">- pilih -</option>
+						<?php foreach ($barang as $data): ?>
+						<option value="<?php echo $data->ID_BARANG ?>"><?php echo $data->ID_BARANG ?></option>
+
+						<?php endforeach; ?>
+					<!-- <option value="2" selected>TEst</option>
+					<option value="1" >TwEst</option> -->
 	                </select>
                 </div>
                 <div class="form-group">
                     <label>Nama Barang</label>
-                    <select name="namabarang[]" class ="form-control" id="namaBarang">
-	                <option value="">- pilih -</option>
-                    <?php foreach ($barang as $data): ?>
-                    <option value="<?php echo $data->ID_BARANG ?>"><?php echo $data->NAMA_BARANG ?></option>
-                    <?php endforeach; ?>
+                    <select name="namabarang[]" id="namaBarang" class ="form-control" >
+	                	<option value="">- pilih -</option>
+                    	<?php foreach ($barang as $data): ?>
+                    	<option value="<?php echo $data->ID_BARANG ?>"><?php echo $data->NAMA_BARANG ?></option>
+                   		<?php endforeach; ?>
 	                </select>
                 </div>
                 <div class="form-group">
                     <label>Satuan</label>
-                    <input type="text" name="satuan[]" placeholder="Isi Satuan" required="" class="form-control">
+                    <input type="text" id="satuan" name="satuan[]" placeholder="Isi Satuan" required="" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label>Harga</label>
-                    <input type="text" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
+                    <input type="text" id="harga" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Qty</label>
-				    <input type="number" name="qty[]" placeholder="isi qty" required="" class="form-control">
+				    <input type="number" id="qty" name="qty[]" placeholder="isi qty" required="" class="form-control">
                 </div>
                 <div class="form-group col-1">
 					<label for="">&nbsp;</label>
-					<button type="button" class="btn btn-primary btn-block" id="tambah" onClick="click()"><i class="fa fa-plus"></i></button>
+					<button type="button" class="btn btn-primary btn-block" id="tambah" ><i class="fa fa-plus"></i></button>
 				</div>
-                <div class="keranjang">
+                <div class="keranjang" div>
 					<table class="table table-bordered" id="keranjang">
 						<thead>
 							<tr>
@@ -99,7 +102,7 @@
 								<td width="15%">Aksi</td>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="keranjang">
 						</tbody>
 						<tfoot>
 							<tr>
@@ -126,19 +129,41 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+
+  <!-- http://mfikri.com/artikel/select-ajax-codeigniter untuk penggunaan id barang ke nama barang-->
   <script>
     $(document).ready(function(){
-
-        $('#idBarang').on('change', function(){
-        //     if($(this).val() == ''){ // or this.value == 'volvo'
-        //     //     $('#nama_barang option:lt(1)').remove();
-        // }
-        // alert('test');
-            console.log("test");    
-        });
-
+		var data = [];
         $('#tambah').on('click', function(){
-            
+			var penjualan = {};
+            var idBarang = $('#idBarang option:selected').val();
+            var namaBarang = $('#namaBarang option:selected').text();
+            var satuanBarang = $('#satuan').val();
+            var hargaBarang = $('#harga').val();
+            var qtyBarang = $('#qty').val();
+
+			
+			penjualan.id_Barang = idBarang;
+			penjualan.nama_Barang = namaBarang;
+			penjualan.satuan_Barang = satuanBarang;
+			penjualan.harga_Barang = hargaBarang;
+			penjualan.qty_Barang = qtyBarang;
+			data.push(penjualan)
+			
+			console.log(data);
+			// console.log(data.length);
+			var tambah_keranjang;
+			tambah_keranjang = '<tr>';
+			tambah_keranjang += '<td>'+data[data.length -1]['nama_Barang']+'</td>';
+			tambah_keranjang += '<td>'+data[data.length -1]['harga_Barang']+'</td>';
+			tambah_keranjang += '<td>'+data[data.length -1]['qty_Barang']+'</td>';
+			tambah_keranjang += '<td>'+data[data.length -1]['satuan_Barang']+'</td>';
+			tambah_keranjang += '<td>'+data[data.length -1]['harga_Barang'] * data[data.length -1]['qty_Barang'] +'</td>';
+			tambah_keranjang += '<td><button type="submit" class="btn btn-danger"><i class="fas fa-trash-o"></i>&nbsp;&nbsp;Hapus</button></td>';
+			tambah_keranjang += '</tr>';
+
+
+			$('#keranjang').append(tambah_keranjang);
         });
     })
 
