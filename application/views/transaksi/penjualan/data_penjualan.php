@@ -67,7 +67,7 @@
             </tr>
            </tbody>
             <p>
-                <a href="<?php echo base_url();?>admin/tambahbarang/" class="btn btn-primary">Tambah Data</a>
+                <a href="<?php echo base_url();?>admin/tambahpenjualan/" class="btn btn-primary">Tambah Data</a>
             </p>
             </table>
         </div>

@@ -35,7 +35,7 @@
                 <option value="<?php echo $data->ID_KELOMPOK ?>"><?php echo $data->NAMA_KELOMPOK ?></option>
               <?php endforeach; ?>
 	            </select>
-          </div>
+            </div>
             <div class="form-group">
               <label>ID Barang</label>
               <input type="text" name="idbarang" placeholder="" required="" class="form-control">
