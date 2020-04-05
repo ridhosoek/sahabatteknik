@@ -21,6 +21,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                <th scope="col">No</th>
                 <th scope="col">ID Kelompok</th>
                 <th scope="col">ID Barang</th>
                 <th scope="col">Nama Barang</th>
@@ -31,30 +32,33 @@
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($barang as $data): ?>
+            <?php foreach ($barang as $data=>$ndata): ?>
             <tr>
+                <td width="50">
+								  <?php echo ($data+1) ?>
+								</td>
                 <td width="150">
-								  <?php echo $data->ID_KELOMPOK ?>
+								  <?php echo $ndata->ID_KELOMPOK ?>
 								</td>
 								<td>
-									<?php echo $data->ID_BARANG ?>
+									<?php echo $ndata->ID_BARANG ?>
                 </td>
                 <td>
-									<?php echo $data->NAMA_BARANG ?>
+									<?php echo $ndata->NAMA_BARANG ?>
                 </td>
                 <td>
-									<?php echo $data->SATUAN ?>
+									<?php echo $ndata->SATUAN ?>
                 </td>
                 <td>
-									<?php echo $data->HARGA ?>
+									<?php echo $ndata->HARGA ?>
                 </td>
                 <td>
-									<?php echo $data->QTY ?>
+									<?php echo $ndata->QTY ?>
                 </td>
                 <td>
-                <a href=<?php echo site_url('admin/editbarang/'.$data->ID_BARANG) ?>>
+                <a href=<?php echo site_url('admin/editbarang/'.$ndata->ID_BARANG) ?>>
                     <button type="button" class="btn btn-primary btn-xs">Edit</button></a>
-                    <a onclick="deleteConfirm('<?php echo site_url('admin/deletebarang/'.$data->ID_BARANG) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
+                    <a onclick="deleteConfirm('<?php echo site_url('admin/deletebarang/'.$ndata->ID_BARANG) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
                 </td>
             </tr>
             <?php endforeach; ?>
