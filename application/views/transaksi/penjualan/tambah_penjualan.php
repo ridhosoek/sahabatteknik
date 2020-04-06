@@ -3,7 +3,9 @@
     <!-- Main content -->
     <section class="content">
       <!-- COLOR PALETTE -->
-    <div class="box box-default color-palette-box">
+	  <div class="row">
+	  <div class="col-md-6">
+	  <div class="box box-default color-palette-box">
 
         <div class="box-header with-border">
         <h3 class="box-title"><i class="fa fa-tag"></i>Data Penjualan</h3>
@@ -40,6 +42,45 @@
         </div>
         <!-- /.box-body -->
     </div>
+	  </div>
+
+	  <div class="col-md-6">
+	  <div class="box box-default color-palette-box">
+
+<div class="box-header with-border">
+<h3 class="box-title"><i class="fa fa-tag"></i>Pembayaran</h3>
+</div>
+<div class="box-body">
+
+	<form method="post" enctype="multipart/form-data" >
+		<div class="form-group">
+			<label>Total Penjualan</label>
+			<input type="text" name="idpenjualan" value="PJ<?= time() ?>" readonly class="form-control">
+		</div>
+		<div class="form-group">
+			<label>Tanggal</label>
+			<input type="text" name="satuan" name="tanggal" value="<?= date('d/m/Y') ?>" readonly class="form-control">
+		</div>
+		<div class="form-group">
+			<label>Pelanggan</label>
+			<select name="idpelanggan" class ="form-control">
+			<option value="">- pilih -</option>
+			<?php foreach ($pelanggan as $data): ?>
+			<option value="<?php echo $data->ID_PELANGGAN ?>"><?php echo $data->NAMA_PELANGGAN ?></option>
+			<?php endforeach; ?>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Kasir</label>
+			<input type="text" name="iduser" required="" class="form-control">
+		</div>
+	</form>
+</div>
+<!-- /.box-body -->
+</div>
+	  </div>
+	  </div>
+    
 
     <div class="box box-default color-palette-box">
 
@@ -53,7 +94,7 @@
 		    </div>
 		    <?php endif; ?>
             <form method="post" enctype="multipart/form-data" >
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label>ID Barang</label>
                     <select name="idbarang[]" id="idBarang" class ="form-control">
 						<option value="">- pilih -</option>
@@ -65,7 +106,7 @@
 					<option value="1" >TwEst</option> -->
 	                </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label>Nama Barang</label>
                     <select name="namabarang[]" id="namaBarang" class ="form-control" >
 	                	<option value="">- pilih -</option>
@@ -74,17 +115,21 @@
                    		<?php endforeach; ?>
 	                </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label>Satuan</label>
                     <input type="text" id="satuan" name="satuan[]" placeholder="Isi Satuan" required="" class="form-control" >
                 </div>
-                <div class="form-group">
-                    <label>Harga</label>
+                <div class="form-group col-md-6">
+                    <label>Harga Modal</label>
                     <input type="text" id="harga" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label>Qty</label>
 				    <input type="number" id="qty" name="qty[]" placeholder="isi qty" required="" class="form-control">
+                </div>
+				<div class="form-group col-md-6">
+                    <label>Harga Jual</label>
+                    <input type="text" id="harga" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
                 </div>
                 <div class="form-group col-1">
 					<label for="">&nbsp;</label>
