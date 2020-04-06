@@ -21,24 +21,28 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                <th scope="col">No</th>
                 <th scope="col">ID User</th>
                 <th scope="col">Password</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($user as $data): ?>    
+            <?php foreach ($user as $data=>$ndata): ?>    
             <tr>
+                <td width="50">
+                  <?php echo ($data+1) ?>
+                </td>
                 <td width="150">
-								  <?php echo $data->ID_USER ?>
+								  <?php echo $ndata->ID_USER ?>
 								</td>
 								<td>
-									<?php echo $data->PASSWORD ?>
+									<?php echo $ndata->PASSWORD ?>
                 </td>
                 <td>
-                    <a href=<?php echo site_url('admin/edituser/'.$data->ID_USER) ?>>
+                    <a href=<?php echo site_url('admin/edituser/'.$ndata->ID_USER) ?>>
                     <button type="button" class="btn btn-primary btn-xs">Edit</button></a>
-                    <a onclick="deleteConfirm('<?php echo site_url('admin/deleteuser/'.$data->ID_USER) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
+                    <a onclick="deleteConfirm('<?php echo site_url('admin/deleteuser/'.$ndata->ID_USER) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
                 </td>
             </tr>
                 <?php endforeach; ?>

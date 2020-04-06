@@ -259,4 +259,20 @@ class Admin extends CI_Controller {
         $this->load->view('transaksi/penjualan/tambah_penjualan',$dataBrg,$dataPgn);
         $this->load->view('include/admin/footer.php');
     }
+
+    public function persediaan(){
+         // $data["user"] = $this->user_model->getAll();
+         $this->load->view('include/admin/header.php');
+         $this->load->view('transaksi/persediaan/data_persediaan');
+         $this->load->view('include/admin/footer.php');
+    }
+
+    public function tambahpersediaan(){
+        // $data["user"] = $this->user_model->getAll();
+        $dataBrg["barang"] = $this->barang_model->getAll();
+        $dataPdn["persediaan"] = $this->persediaan_model->getAll();
+        $this->load->view('include/admin/header.php');
+        $this->load->view('transaksi/persediaan/tambah_persediaan',$dataBrg,$dataPdn);
+        $this->load->view('include/admin/footer.php');
+    }
 }
