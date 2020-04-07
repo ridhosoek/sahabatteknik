@@ -21,10 +21,6 @@ class Barang_model extends CI_Model
             'label' => 'ID Kelompok',
             'rules' => 'required'],
 
-            ['field' => 'idbarang',
-            'label' => 'ID Barang',
-            'rules' => 'required'],
-
             ['field' => 'namabarang',
             'label' => 'Nama Barang',
             'rules' => 'required'],
@@ -63,7 +59,6 @@ class Barang_model extends CI_Model
     {
         $post = $this->input->post();
         $this->ID_KELOMPOK = $post["idkelompok"];
-        $this->ID_BARANG = $post["idbarang"];
         $this->NAMA_BARANG = $post["namabarang"];
         $this->SATUAN = $post["satuan"];
         $this->HARGA = $post["harga"];

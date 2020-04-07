@@ -22,7 +22,6 @@
             <thead>
                 <tr>
                 <th scope="col">No</th>
-                <th scope="col">ID Kelompok</th>
                 <th scope="col">Nama Kelompok</th>
                 <th scope="col">Action</th>
                 </tr>
@@ -33,7 +32,7 @@
                 <td width="50">
                   <?php echo ($data+1) ?>
                 </td>
-                <td width="150">
+                <td width="150" hidden>
 								  <?php echo $ndata->ID_KELOMPOK ?>
 								</td>
 								<td>

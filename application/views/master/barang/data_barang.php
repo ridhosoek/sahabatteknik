@@ -22,8 +22,7 @@
             <thead>
                 <tr>
                 <th scope="col">No</th>
-                <th scope="col">ID Kelompok</th>
-                <th scope="col">ID Barang</th>
+                <th scope="col">Kelompok</th>
                 <th scope="col">Nama Barang</th>
                 <th scope="col">Satuan</th>
                 <th scope="col">Harga</th>
@@ -40,7 +39,7 @@
                 <td width="150">
 								  <?php echo $ndata->ID_KELOMPOK ?>
 								</td>
-								<td>
+								<td hidden>
 									<?php echo $ndata->ID_BARANG ?>
                 </td>
                 <td>
@@ -49,7 +48,7 @@
                 <td>
 									<?php echo $ndata->SATUAN ?>
                 </td>
-                <td>
+                <td id=harga>
 									<?php echo $ndata->HARGA ?>
                 </td>
                 <td>
@@ -79,6 +78,12 @@
 	    $('#btn-delete').attr('href', url);
 	    $('#deleteModal').modal();
       }
+
+      $(document).ready(function(){
+        // $('#harga').autoNumeric('init');
+		new AutoNumeric('#harga', { currencySymbol : 'Rp.' , decimalPlaces: 0});
+
+    });
     </script>
     <!-- /.content -->
   </div>

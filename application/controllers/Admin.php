@@ -9,6 +9,8 @@ class Admin extends CI_Controller {
         $this->load->model("barang_model");
         $this->load->model("pelanggan_model");
         $this->load->model("user_model");
+        $this->load->model("penjualan_model");
+        $this->load->model("persediaan_model");
         $this->load->library('form_validation');
     }
 

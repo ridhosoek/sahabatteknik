@@ -28,7 +28,7 @@
          </p>
          <form method="post" enctype="multipart/form-data" >
             <div class="form-group">
-              <label>ID Kelompok</label>
+              <label>Kelompok</label>
               <select name="idkelompok" class ="form-control">
 	            <option value="">- pilih -</option>
               <?php foreach ($kelompok as $data): ?>
@@ -36,10 +36,7 @@
               <?php endforeach; ?>
 	            </select>
             </div>
-            <div class="form-group">
-              <label>ID Barang</label>
-              <input type="text" name="idbarang" placeholder="" required="" class="form-control">
-            </div>
+
             <div class="form-group">
               <label>Nama Barang</label>
               <input type="text" name="namabarang" placeholder="Isi Nama Barang" required="" class="form-control">
@@ -50,7 +47,7 @@
             </div>
             <div class="form-group">
               <label>Harga</label>
-              <input type="text" name="harga" placeholder="Isi Harga" required="" class="form-control">
+              <input type="text" id=hargaf name="harga" placeholder="Isi Harga" required="" class="form-control">
             </div>
             <div class="form-group">
             <label>Qty</label>
@@ -65,3 +62,10 @@
     </section>
     <!-- /.content -->
   </div>
+  <script>
+  $(document).ready(function(){
+        // $('#harga').autoNumeric('init');
+		new AutoNumeric('#hargaf', {decimalPlaces: 0, outputFormat: "number"});
+		
+    });
+  </script>

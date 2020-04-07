@@ -12,15 +12,11 @@ class Kelompok_model extends CI_Model
     public function rules()
     {
         return [
-            ['field' => 'idkelompok',
-            'label' => 'ID Kelompok',
-            'rules' => 'required'],
 
             ['field' => 'namakelompok',
             'label' => 'Nama Kelompok',
             'rules' => 'required'],
             
-
         ];
     }
 
@@ -37,7 +33,6 @@ class Kelompok_model extends CI_Model
     public function save()
     {
         $post = $this->input->post();
-        $this->ID_KELOMPOK = $post["idkelompok"];
         $this->NAMA_KELOMPOK = $post["namakelompok"];
         return $this->db->insert($this->_table, $this);
     }

@@ -23,16 +23,11 @@
 					<?php echo $this->session->flashdata('success'); ?>
 				</div>
 				<?php endif; ?>
-        
-        
+                
         <p>
           <a href="<?php echo base_url();?>admin/kelompok/" class="btn btn-danger">Kembali</a>
         </p>
         <form method="post" enctype="multipart/form-data" >
-            <div class="form-group">
-              <label>ID Kelompok</label>
-              <input type="text" name="idkelompok" required value ="<?= mt_rand(10000000, 99999999) ?>" class="form-control">
-            </div>
             <div class="form-group">
               <label>Nama Kelompok</label>
               <input type="text" name="namakelompok" placeholder="Isi Nama Kelompok" required="" class="form-control">

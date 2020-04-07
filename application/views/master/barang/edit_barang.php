@@ -28,13 +28,12 @@
          </p>
          <form method="post" enctype="multipart/form-data" >
             <div class="form-group">
-              <label>ID Kelompok</label>
+              <label>Kelompok</label>
               <input class="form-control <?php echo form_error('idkelompok') ? 'is-invalid':'' ?>"
 			  type="text" name="idkelompok" value="<?php echo $barang->ID_KELOMPOK ?>" />
             </div>
             <div class="form-group">
-              <label>ID Barang</label>
-              <input class="form-control <?php echo form_error('idbarang') ? 'is-invalid':'' ?>"
+                <input class="form-control <?php echo form_error('idbarang') ? 'is-invalid':'' ?>"
 			  type="text" name="idbarang" value="<?php echo $barang->ID_BARANG ?>" />
             </div>
             <div class="form-group">
