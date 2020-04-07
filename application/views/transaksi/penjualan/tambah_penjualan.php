@@ -8,7 +8,7 @@
 	  <div class="box box-default color-palette-box">
 
         <div class="box-header with-border">
-        <h3 class="box-title"><i class="fa fa-tag"></i>Data Penjualan</h3>
+        <h5 class="box-title"><i class="fa fa-tag"></i>Data Penjualan</h5>
         </div>
         <div class="box-body">
             <?php if ($this->session->flashdata('success')): ?>
@@ -48,7 +48,7 @@
 	  <div class="box box-default color-palette-box">
 
 <div class="box-header with-border">
-<h3 class="box-title"><i class="fa fa-tag"></i>Pembayaran</h3>
+<h5 class="box-title"><i class="fa fa-tag"></i>Pembayaran</h5>
 </div>
 <div class="box-body">
 
@@ -129,7 +129,7 @@
                 </div>
 				<div class="form-group col-md-6">
                     <label>Harga Jual</label>
-                    <input type="text" id="harga" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
+                    <input type="text" id="hargaj" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
                 </div>
                 <div class="form-group col-1">
 					<label for="">&nbsp;</label>
@@ -170,10 +170,6 @@
     </section>
     <!-- /.content -->
 </div>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
 
   <!-- http://mfikri.com/artikel/select-ajax-codeigniter untuk penggunaan id barang ke nama barang-->
   <script>
@@ -211,7 +207,12 @@
 			$('#keranjang').append(tambah_keranjang);
         });
     })
+	$(document).ready(function(){
+        // $('#harga').autoNumeric('init');
+		new AutoNumeric('#harga', { currencySymbol : 'Rp.' , decimalPlaces: 0});
+		new AutoNumeric('#hargaj', { currencySymbol : 'Rp.' , decimalPlaces: 0});
 
+    });
   </script>
 <!-- <script>
     

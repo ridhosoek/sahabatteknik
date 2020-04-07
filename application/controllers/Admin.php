@@ -270,9 +270,8 @@ class Admin extends CI_Controller {
     public function tambahpersediaan(){
         // $data["user"] = $this->user_model->getAll();
         $dataBrg["barang"] = $this->barang_model->getAll();
-        $dataPdn["persediaan"] = $this->persediaan_model->getAll();
         $this->load->view('include/admin/header.php');
-        $this->load->view('transaksi/persediaan/tambah_persediaan',$dataBrg,$dataPdn);
+        $this->load->view('transaksi/persediaan/tambah_persediaan',$dataBrg);
         $this->load->view('include/admin/footer.php');
     }
 }

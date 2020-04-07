@@ -27,7 +27,7 @@
                   </a>
                   <ul class="treeview-menu">
                     <li><a href="<?php echo base_url();?>admin/penjualan"><i class="fa fa-circle-o text-aqua"></i>Penjualan</a></li>
-                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Persediaan</a></li>
+                    <li><a href="<?php echo base_url();?>admin/persediaan"><i class="fa fa-circle-o text-aqua"></i>Persediaan</a></li>
                   </ul>
                </li>
 

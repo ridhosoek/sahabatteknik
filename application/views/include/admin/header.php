@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/AdminLTE.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/_all-skins.min.css">
     <link href="<?php echo base_url(); ?>assets/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/AutoNumeric.js"></script>
   </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
