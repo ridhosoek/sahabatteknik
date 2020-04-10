@@ -28,10 +28,6 @@
          </p>
         <form method="post">
             <div class="form-group">
-              <label>ID Pelanggan</label>
-              <input type="text" name="idpelanggan" required="" class="form-control">
-            </div>
-            <div class="form-group">
               <label>Nama Pelanggan</label>
               <input type="text" name="namapelanggan" placeholder="Isi Nama Pelanggan" required="" class="form-control">
             </div>
@@ -48,9 +44,7 @@
         </div>
         <!-- /.box-body -->
       </div>
-      
-
-
+    
     </section>
     <!-- /.content -->
   </div>

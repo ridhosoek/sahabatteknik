@@ -15,7 +15,7 @@
       <!-- COLOR PALETTE -->
       <div class="box box-default color-palette-box">
         <div class="box-header with-border">
-          <h3 class="box-title"><i class="fa fa-tag"></i>Tambah Barang</h3>
+          <h3 class="box-title"><i class="fa fa-tag"></i>Edit Barang</h3>
         </div>
         <div class="box-body">
           <?php if ($this->session->flashdata('success')): ?>
@@ -27,13 +27,16 @@
            <a href="<?php echo base_url();?>admin/barang/" class="btn btn-danger">Kembali</a>
          </p>
          <form method="post" enctype="multipart/form-data" >
-            <div class="form-group">
+         <div class="form-group">
               <label>Kelompok</label>
-              <input class="form-control <?php echo form_error('idkelompok') ? 'is-invalid':'' ?>"
-			  type="text" name="idkelompok" value="<?php echo $barang->ID_KELOMPOK ?>" />
+              <select name="idkelompok" class ="form-control">
+	            <?php foreach ($kelompok as $data): ?>
+                <option <?php if($data->ID_KELOMPOK == "your desired id"){ echo 'selected="selected"'; } ?> value="<?php echo $data->ID_KELOMPOK ?>"><?php echo $data->category?></option>
+              <?php endforeach; ?>
+	            </select>
             </div>
             <div class="form-group">
-                <input class="form-control <?php echo form_error('idbarang') ? 'is-invalid':'' ?>"
+                <input type="hidden" class="form-control <?php echo form_error('idbarang') ? 'is-invalid':'' ?>"
 			  type="text" name="idbarang" value="<?php echo $barang->ID_BARANG ?>" />
             </div>
             <div class="form-group">
@@ -70,5 +73,5 @@
         // $('#harga').autoNumeric('init');
 		new AutoNumeric('#hargaf', {decimalPlaces: 0, unformatOnSubmit: true});
 		
-    });
+  });
   </script>

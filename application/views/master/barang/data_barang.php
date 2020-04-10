@@ -80,7 +80,7 @@
 
       $(document).ready(function(){
         // $('#harga').autoNumeric('init');
-		  new AutoNumeric.multiple('.harga', {decimalPlaces: 0});
+		  new AutoNumeric.multiple('.harga', {currencySymbol : 'Rp.', decimalPlaces: 0});
       });
     </script>
     <!-- /.content -->

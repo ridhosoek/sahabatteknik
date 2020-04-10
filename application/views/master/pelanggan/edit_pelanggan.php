@@ -28,8 +28,7 @@
         </p>
         <form method="post" enctype="multipart/form-data" >
             <div class="form-group">
-              <label>ID Pelanggan</label>
-              <input class="form-control <?php echo form_error('idpelanggan') ? 'is-invalid':'' ?>"
+              <input type="hidden" class="form-control <?php echo form_error('idpelanggan') ? 'is-invalid':'' ?>"
 			  type="text" name="idpelanggan" value="<?php echo $pelanggan->ID_PELANGGAN ?>" />
 			      <div class="invalid-feedback">
 			      <?php echo form_error('name') ?>

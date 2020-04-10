@@ -13,9 +13,6 @@ class Pelanggan_model extends CI_Model
     public function rules()
     {
         return [
-            ['field' => 'idpelanggan',
-            'label' => 'ID pelanggan',
-            'rules' => 'required'],
 
             ['field' => 'namapelanggan',
             'label' => 'nama pelanggan',
@@ -46,7 +43,6 @@ class Pelanggan_model extends CI_Model
     public function save()
     {
         $post = $this->input->post();
-        $this->ID_PELANGGAN = $post["idpelanggan"];
         $this->NAMA_PELANGGAN = $post["namapelanggan"];
         $this->ALAMAT = $post["alamat"];
         $this->NOMOR_HP = $post["nomorhp"];

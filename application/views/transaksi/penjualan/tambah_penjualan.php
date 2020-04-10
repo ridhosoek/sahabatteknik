@@ -55,23 +55,14 @@
 	<form method="post" enctype="multipart/form-data" >
 		<div class="form-group">
 			<label>Total Penjualan</label>
-			<input type="text" name="idpenjualan" value="PJ<?= time() ?>" readonly class="form-control">
+			<input type="text" name="idpenjualan" value="" readonly class="form-control">
 		</div>
 		<div class="form-group">
-			<label>Tanggal</label>
-			<input type="text" name="satuan" name="tanggal" value="<?= date('d/m/Y') ?>" readonly class="form-control">
+			<label>Jumlah Bayar</label>
+			<input type="text" name="satuan" name="tanggal" value="" class="form-control">
 		</div>
 		<div class="form-group">
-			<label>Pelanggan</label>
-			<select name="idpelanggan" class ="form-control">
-			<option value="">- pilih -</option>
-			<?php foreach ($pelanggan as $data): ?>
-			<option value="<?php echo $data->ID_PELANGGAN ?>"><?php echo $data->NAMA_PELANGGAN ?></option>
-			<?php endforeach; ?>
-			</select>
-		</div>
-		<div class="form-group">
-			<label>Kasir</label>
+			<label>Kembalian</label>
 			<input type="text" name="iduser" required="" class="form-control">
 		</div>
 	</form>
@@ -95,18 +86,6 @@
 		    <?php endif; ?>
             <form method="post" enctype="multipart/form-data" >
                 <div class="form-group col-md-6">
-                    <label>ID Barang</label>
-                    <select name="idbarang[]" id="idBarang" class ="form-control">
-						<option value="">- pilih -</option>
-						<?php foreach ($barang as $data): ?>
-						<option value="<?php echo $data->ID_BARANG ?>"><?php echo $data->ID_BARANG ?></option>
-
-						<?php endforeach; ?>
-					<!-- <option value="2" selected>TEst</option>
-					<option value="1" >TwEst</option> -->
-	                </select>
-                </div>
-                <div class="form-group col-md-6">
                     <label>Nama Barang</label>
                     <select name="namabarang[]" id="namaBarang" class ="form-control" >
 	                	<option value="">- pilih -</option>
@@ -121,7 +100,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>Harga Modal</label>
-                    <input type="text" id="harga" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
+                    <input type="text" id="hargaj" name="hargaj[]" placeholder="Isi Harga" required="" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label>Qty</label>
@@ -129,7 +108,7 @@
                 </div>
 				<div class="form-group col-md-6">
                     <label>Harga Jual</label>
-                    <input type="text" id="hargaj" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
+                    <input type="text" id="harga" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
                 </div>
                 <div class="form-group col-1">
 					<label for="">&nbsp;</label>
@@ -173,6 +152,35 @@
 
   <!-- http://mfikri.com/artikel/select-ajax-codeigniter untuk penggunaan id barang ke nama barang-->
   <script>
+	// $(document).ready(function(){
+    //     // $('#harga').autoNumeric('init');
+	// 	new AutoNumeric('#harga', {decimalPlaces: 0, unformatOnSubmit: true});
+	// 	new AutoNumeric('#hargaj', {decimalPlaces: 0, unformatOnSubmit: true});
+    // });
+
+	$(document).ready(function(){
+        $('#namabarang').change(function(){
+            var id=$(this).val();
+            $.ajax({
+                url : "<?php echo base_url();?>admin/barang",
+                method : "POST",
+                data : {id: id},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var html = '';
+                    var i;
+                    for(i=0; i<data.length; i++){
+						html += data[i].SATUAN;
+						html += data[i].HARGA;
+                    }
+					$('#satuan').html(html);
+					$('#hargaj').html(html);
+                }
+            });
+        });
+    });
+
     $(document).ready(function(){
 		var data = [];
         $('#tambah').on('click', function(){
@@ -200,19 +208,14 @@
 			tambah_keranjang += '<td>'+data[data.length -1]['qty_Barang']+'</td>';
 			tambah_keranjang += '<td>'+data[data.length -1]['satuan_Barang']+'</td>';
 			tambah_keranjang += '<td>'+data[data.length -1]['harga_Barang'] * data[data.length -1]['qty_Barang'] +'</td>';
-			tambah_keranjang += '<td><button type="submit" class="btn btn-danger"><i class="fas fa-trash-o"></i>&nbsp;&nbsp;Hapus</button></td>';
+			tambah_keranjang += '<td><button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Hapus</button></td>';
 			tambah_keranjang += '</tr>';
 
 
 			$('#keranjang').append(tambah_keranjang);
         });
     })
-	$(document).ready(function(){
-        // $('#harga').autoNumeric('init');
-		new AutoNumeric('#harga', { currencySymbol : 'Rp.' , decimalPlaces: 0});
-		new AutoNumeric('#hargaj', { currencySymbol : 'Rp.' , decimalPlaces: 0});
 
-    });
   </script>
 <!-- <script>
     

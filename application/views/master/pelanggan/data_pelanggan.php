@@ -22,7 +22,6 @@
             <thead>
                 <tr>
                 <th scope="col">No</th>
-                <th scope="col">ID pelanggan</th>
                 <th scope="col">Nama pelanggan</th>
                 <th scope="col">Alamat</th>
                 <th scope="col">Nomor Hp</th>
@@ -35,7 +34,7 @@
                 <td width="50">
                   <?php echo ($data+1) ?>
                 </td>
-                <td width="150">
+                <td hidden>
 								  <?php echo $ndata->ID_PELANGGAN ?>
 								</td>
 								<td>

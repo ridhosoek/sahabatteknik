@@ -117,11 +117,8 @@ class Admin extends CI_Controller {
 
         $data["barang"] = $barang->getById($id);
         if (!$data["barang"]) show_404();
-
-        $dataK["kelompok"] = $barang->getById($id);
-        if (!$dataK["kelompok"]) show_404();
-        
-        $this->load->view("master/barang/edit_barang", $data,$dataK);
+     
+        $this->load->view("master/barang/edit_barang", $data);
         $this->load->view('include/admin/footer.php');
     }
     public function deletebarang($id=null)
@@ -258,7 +255,7 @@ class Admin extends CI_Controller {
         $dataBrg["barang"] = $this->barang_model->getAll();
         $dataPgn["pelanggan"] = $this->pelanggan_model->getAll();
         $this->load->view('include/admin/header.php');
-        $this->load->view('transaksi/penjualan/tambah_penjualan',$dataBrg,$dataPgn);
+        $this->load->view('transaksi/penjualan/tambah_penjualan',$dataBrg);
         $this->load->view('include/admin/footer.php');
     }
 

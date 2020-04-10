@@ -53,6 +53,13 @@ class Penjualan_model extends CI_Model
     {
         return $this->db->get($this->_table)->result();
     }
+
+    public function getDataBarang()
+    {
+        $id=$this->input->post('ID_BARANG');
+        $data=$this->barang_model->getById($id);
+        echo json_encode($data);
+    }
     
  
 }
