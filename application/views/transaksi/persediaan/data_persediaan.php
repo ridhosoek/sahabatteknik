@@ -21,9 +21,8 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                <th scope="col">No Persediaan</th>
                 <th scope="col">Tanggal</th>
-                <th scope="col">Iduser</th>
-                <th scope="col">Idpersediaan</th>
                 <th scope="col">Total</th>
                 <th scope="col">Detail</th>
                 <th scope="col">Action</th>
@@ -32,31 +31,15 @@
             <tbody>
             
             <tr>
-                <td width="150">
-								 
-				</td>
-			    <td width="150">
-						
-                </td>
-                <td width="200">
-								
-                </td>
-                <td>
-									
-                </td>
-                <td>
-									
-                </td>
-                <td>
-									
-                </td>
-                <td>
-									
-                </td>
-                <td>
+              <td width=200>
+							</td>
+			        <td width=200>
+						  </td>
+              <td >
+              <td>
                 <a href="#"><i class="fa fa-eye"></i></a>
-                </td>
-                <td>
+              </td>
+              <td>
                 <a href=#>
                     <button type="button" class="btn btn-primary btn-xs">Edit</button></a>
                     <a onclick="" href="#!" class="btn btn-danger btn-xs">Hapus</a>

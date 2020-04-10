@@ -3,6 +3,8 @@
 class Penjualan_model extends CI_Model
 {
     private $_table = "penjualan"; //nama tabel
+    private $_tableB = "barang"; //nama tabel
+    private $_tableP = "pelanggan"; //nama tabel
 
     // nama kolom di tabel, harus sama huruf besar dan huruf kecilnya!
     public $ID_PENJUALAN;

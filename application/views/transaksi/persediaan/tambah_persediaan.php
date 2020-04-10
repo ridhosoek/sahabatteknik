@@ -8,7 +8,7 @@
 	  <div class="box box-default color-palette-box">
 
         <div class="box-header with-border">
-        <h3 class="box-title"><i class="fa fa-tag"></i>Data Penjualan</h3>
+        <h3 class="box-title"><i class="fa fa-tag"></i>Data Persediaan</h3>
         </div>
         <div class="box-body">
             <?php if ($this->session->flashdata('success')): ?>
@@ -18,25 +18,20 @@
 		    <?php endif; ?>
             <form method="post" enctype="multipart/form-data" >
                 <div class="form-group">
-                    <label>No Penjualan</label>
-                    <input type="text" name="idpenjualan" value="PJ<?= time() ?>" readonly class="form-control">
+                    <label>No Persediaan</label>
+                    <input type="text" name="idpersediaan" value="PR<?= time() ?>" readonly class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Tanggal</label>
-                    <input type="text" name="satuan" name="tanggal" value="<?= date('d/m/Y') ?>" readonly class="form-control">
+                    <input type="text" name="tanggal" value="<?= date('d/m/Y') ?>" readonly class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Pelanggan</label>
-                    <select name="idpelanggan" class ="form-control">
-	                <option value="">- pilih -</option>
-                    <?php foreach ($pelanggan as $data): ?>
-                    <option value="<?php echo $data->ID_PELANGGAN ?>"><?php echo $data->NAMA_PELANGGAN ?></option>
-                    <?php endforeach; ?>
-	                </select>
-                </div>
-                <div class="form-group">
-                    <label>Kasir</label>
+                    <label>User</label>
                     <input type="text" name="iduser" required="" class="form-control">
+				</div>
+				<div class="form-group">
+                    <label>Total Persediaan</label>
+                    <input type="text" name="total" required="" class="form-control">
                 </div>
             </form>
         </div>
@@ -47,44 +42,7 @@
 	  <div class="col-md-6">
 	  <div class="box box-default color-palette-box">
 
-<div class="box-header with-border">
-<h3 class="box-title"><i class="fa fa-tag"></i>Pembayaran</h3>
-</div>
-<div class="box-body">
-
-	<form method="post" enctype="multipart/form-data" >
-		<div class="form-group">
-			<label>Total Penjualan</label>
-			<input type="text" name="idpenjualan" value="PJ<?= time() ?>" readonly class="form-control">
-		</div>
-		<div class="form-group">
-			<label>Tanggal</label>
-			<input type="text" name="satuan" name="tanggal" value="<?= date('d/m/Y') ?>" readonly class="form-control">
-		</div>
-		<div class="form-group">
-			<label>Pelanggan</label>
-			<select name="idpelanggan" class ="form-control">
-			<option value="">- pilih -</option>
-			<?php foreach ($pelanggan as $data): ?>
-			<option value="<?php echo $data->ID_PELANGGAN ?>"><?php echo $data->NAMA_PELANGGAN ?></option>
-			<?php endforeach; ?>
-			</select>
-		</div>
-		<div class="form-group">
-			<label>Kasir</label>
-			<input type="text" name="iduser" required="" class="form-control">
-		</div>
-	</form>
-</div>
-<!-- /.box-body -->
-</div>
-	  </div>
-	  </div>
-    
-
-    <div class="box box-default color-palette-box">
-
-        <div class="box-header with-border">
+	  <div class="box-header with-border">
         <h3 class="box-title"><i class="fa fa-tag"></i>Data Barang</h3>
         </div>
         <div class="box-body">
@@ -94,18 +52,6 @@
 		    </div>
 		    <?php endif; ?>
             <form method="post" enctype="multipart/form-data" >
-                <div class="form-group col-md-6">
-                    <label>ID Barang</label>
-                    <select name="idbarang[]" id="idBarang" class ="form-control">
-						<option value="">- pilih -</option>
-						<?php foreach ($barang as $data): ?>
-						<option value="<?php echo $data->ID_BARANG ?>"><?php echo $data->ID_BARANG ?></option>
-
-						<?php endforeach; ?>
-					<!-- <option value="2" selected>TEst</option>
-					<option value="1" >TwEst</option> -->
-	                </select>
-                </div>
                 <div class="form-group col-md-6">
                     <label>Nama Barang</label>
                     <select name="namabarang[]" id="namaBarang" class ="form-control" >
@@ -127,15 +73,21 @@
                     <label>Qty</label>
 				    <input type="number" id="qty" name="qty[]" placeholder="isi qty" required="" class="form-control">
                 </div>
-				<div class="form-group col-md-6">
-                    <label>Harga Jual</label>
-                    <input type="text" id="hargaj" name="harga[]" placeholder="Isi Harga" required="" class="form-control">
-                </div>
                 <div class="form-group col-1">
 					<label for="">&nbsp;</label>
 					<button type="button" class="btn btn-primary btn-block" id="tambah" ><i class="fa fa-plus"></i></button>
 				</div>
-                <div class="keranjang" div>
+                
+            </form>
+        </div>
+<!-- /.box-body -->
+</div>
+	  </div>
+	  </div>
+    
+
+    <div class="box box-default color-palette-box">
+		<div class="keranjang" div>
 					<table class="table table-bordered" id="keranjang">
 						<thead>
 							<tr>
@@ -162,8 +114,7 @@
 						</tfoot>
 					</table>
 				</div>
-            </form>
-        </div>
+        
         <!-- /.box-body -->
     </div>
       
@@ -200,16 +151,17 @@
 			tambah_keranjang += '<td>'+data[data.length -1]['qty_Barang']+'</td>';
 			tambah_keranjang += '<td>'+data[data.length -1]['satuan_Barang']+'</td>';
 			tambah_keranjang += '<td>'+data[data.length -1]['harga_Barang'] * data[data.length -1]['qty_Barang'] +'</td>';
-			tambah_keranjang += '<td><button type="submit" class="btn btn-danger"><i class="fas fa-trash-o"></i>&nbsp;&nbsp;Hapus</button></td>';
+			tambah_keranjang += '<td><button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Hapus</button></td>';
 			tambah_keranjang += '</tr>';
 
 
 			$('#keranjang').append(tambah_keranjang);
         });
     })
-	$(document).ready(function(){
-        // $('#harga').autoNumeric('init');
-		new AutoNumeric('#harga', { currencySymbol : 'Rp.' , decimalPlaces: 0});
+	// $(document).ready(function(){
+    //     // $('#harga').autoNumeric('init');
+	// 	new AutoNumeric('#harga', { currencySymbol : 'Rp.' , decimalPlaces: 0});
 
-    });
+	// });
+	
   </script>
