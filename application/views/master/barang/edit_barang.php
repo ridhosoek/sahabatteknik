@@ -48,7 +48,7 @@
             </div>
             <div class="form-group">
               <label>Harga</label>
-              <input class="form-control <?php echo form_error('harga') ? 'is-invalid':'' ?>"
+              <input id="hargaf" class="form-control <?php echo form_error('harga') ? 'is-invalid':'' ?>"
 			  type="text" name="harga" value="<?php echo $barang->HARGA ?>" />
             </div>
             <div class="form-group">
@@ -65,3 +65,10 @@
     </section>
     <!-- /.content -->
   </div>
+  <script>
+  $(document).ready(function(){
+        // $('#harga').autoNumeric('init');
+		new AutoNumeric('#hargaf', {decimalPlaces: 0, unformatOnSubmit: true});
+		
+    });
+  </script>

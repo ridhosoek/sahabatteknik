@@ -78,7 +78,7 @@ class Admin extends CI_Controller {
     }
 
     public function barang(){
-        $data["barang"] = $this->barang_model->getAll();
+        $data["barang"] = $this->barang_model->getAllBarang();
         $this->load->view('include/admin/header.php');
         $this->load->view('master/barang/data_barang',$data);
         $this->load->view('include/admin/footer.php');

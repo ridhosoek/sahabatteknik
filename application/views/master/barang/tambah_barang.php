@@ -65,7 +65,7 @@
   <script>
   $(document).ready(function(){
         // $('#harga').autoNumeric('init');
-		new AutoNumeric('#hargaf', {decimalPlaces: 0, outputFormat: "number"});
+		new AutoNumeric('#hargaf', {decimalPlaces: 0, unformatOnSubmit: true});
 		
     });
   </script>

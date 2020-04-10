@@ -7,6 +7,7 @@ class Barang_model extends CI_Model
 
     // nama kolom di tabel, harus sama huruf besar dan huruf kecilnya!
     public $ID_KELOMPOK;
+    // public $NAMA_KELOMPOK;
     public $ID_BARANG;
     public $NAMA_BARANG;
     public $SATUAN;
@@ -43,6 +44,16 @@ class Barang_model extends CI_Model
     public function getAll()
     {
         return $this->db->get($this->_table)->result();
+    }
+
+    public function getAllBarang()
+    {
+        $this->db->select('kelompok.NAMA_KELOMPOK,barang.ID_BARANG,barang.NAMA_BARANG,barang.SATUAN,barang.HARGA,barang.QTY');
+        $this->db->join('kelompok', 'kelompok.ID_KELOMPOK = barang.ID_KELOMPOK');
+        $this->db->from('barang');
+        $query = $this->db->get();
+        return $query->result();
+       
     }
 
     // public function getKelompok()

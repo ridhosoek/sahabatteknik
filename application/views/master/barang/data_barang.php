@@ -37,7 +37,7 @@
 								  <?php echo ($data+1) ?>
 								</td>
                 <td width="150">
-								  <?php echo $ndata->ID_KELOMPOK ?>
+								  <?php echo $ndata->NAMA_KELOMPOK ?>
 								</td>
 								<td hidden>
 									<?php echo $ndata->ID_BARANG ?>
@@ -48,8 +48,8 @@
                 <td>
 									<?php echo $ndata->SATUAN ?>
                 </td>
-                <td id=harga>
-									<?php echo $ndata->HARGA ?>
+                <td>
+									<span class="harga"><?php echo $ndata->HARGA ?></span>
                 </td>
                 <td>
 									<?php echo $ndata->QTY ?>
@@ -70,10 +70,9 @@
         <!-- /.box-body -->
       </div>
       
-
-
     </section>
-    <script>
+  </div>
+  <script>
       function deleteConfirm(url){
 	    $('#btn-delete').attr('href', url);
 	    $('#deleteModal').modal();
@@ -81,9 +80,7 @@
 
       $(document).ready(function(){
         // $('#harga').autoNumeric('init');
-		new AutoNumeric('#harga', { currencySymbol : 'Rp.' , decimalPlaces: 0});
-
-    });
+		  new AutoNumeric.multiple('.harga', {decimalPlaces: 0});
+      });
     </script>
     <!-- /.content -->
-  </div>
