@@ -259,6 +259,12 @@ class Admin extends CI_Controller {
         $this->load->view('include/admin/footer.php');
     }
 
+    public function get_barang(){
+        $kode=$this->input->post('ID_BARANG');
+        $data=$this->penjualan_model->get_data_barang_bykode($kode);
+        echo json_encode($data);
+    }
+
     public function persediaan(){
          // $data["user"] = $this->user_model->getAll();
          $this->load->view('include/admin/header.php');
