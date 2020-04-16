@@ -19,12 +19,15 @@
             <form method="post" enctype="multipart/form-data" >
                 <div class="form-group">
                     <label>No Penjualan</label>
-                    <input type="text" name="idpenjualan" value="PJ<?=time() ?>" readonly class="form-control">
+                    <input type="text" name="idpenjualan" value="PJ<?=time() ?>" readonly required="" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Tanggal</label>
-                    <input type="text" name="satuan" name="tanggal" value="<?= date('d/m/Y') ?>" readonly class="form-control">
+                    <input type="date" class="form-control" name="date_out" value="<?php echo isset($itemOutData->date_out) ? set_value('date_out', date('Y-m-d', strtotime($itemOutData->date_out))) : set_value('date_out'); ?>">
                 </div>
+                <!-- <div class="form-group">
+                    <input type="hidden" name="tanggalinput" value="<?= date('d/m/Y') ?>" readonly required="" hidden class="form-control">
+                </div> -->
                 <div class="form-group">
                     <label>Pelanggan</label>
                     <select name="idpelanggan" class ="form-control">
@@ -38,7 +41,8 @@
                     <label>Kasir</label>
                     <input type="text" name="iduser" required="" class="form-control">
                 </div>
-            </form>
+
+        <!-- </form> -->
         </div>
         <!-- /.box-body -->
     </div>
@@ -52,19 +56,21 @@
 </div>
 <div class="box-body">
 
-    <form method="post" enctype="multipart/form-data" >
-        <div class="form-group">
+    <!-- <form method="post" enctype="multipart/form-data" > -->
+    <div class="form-group">
             <label>Total Penjualan</label>
-            <input type="text" name="total_hidden" id="total_penjualan" value="" readonly class="form-control">
+            <input type="text" name="total_hidden" id="total_penjualan" readonly required="" class="form-control">
         </div>
         <div class="form-group">
             <label>Jumlah Bayar</label>
-            <input type="text" name="jumlahbayar" id="jumlah_bayar" value="" onkeyup="sum();" class="form-control">
+            <input type="text" name="jumlahbayar" id="jumlah_bayar" onkeyup="sum();" required="" class="form-control">
         </div>
         <div class="form-group">
             <label>Kembalian</label>
             <input type="text" name="kembali" id="kembalian" required="" class="form-control">
         </div>
+        <input class="btn btn-success" type="submit" name="btn" value="Save" />
+        <a href="<?php echo base_url();?>admin/penjualan/" class="btn btn-danger">Kembali</a>
     </form>
 </div>
 <!-- /.box-body -->
@@ -79,11 +85,6 @@
         <h3 class="box-title"><i class="fa fa-tag"></i>Data Barang</h3>
         </div>
         <div class="box-body">
-            <?php if ($this->session->flashdata('success')): ?>
-            <div class="alert alert-success" role="alert">
-            <?php echo $this->session->flashdata('success'); ?>
-            </div>
-            <?php endif; ?>
             <form method="post" enctype="multipart/form-data" >
                 <div class="form-group col-md-6">
                     <label>Nama Barang</label>
@@ -96,11 +97,11 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>Satuan</label>
-                    <input type="text" name="satuan" id="satuan" placeholder="IsiSatuan" required="" class="form-control" >
+                    <input type="text" name="satuan" id="satuan" placeholder="IsiSatuan" required="" readonly class="form-control" >
                 </div>
                 <div class="form-group col-md-6">
                     <label>Harga Modal</label>
-                    <input type="text" name="harga" id="hargaj" placeholder="IsiHarga" required="" class="form-control">
+                    <input type="text" name="harga" id="hargaj" placeholder="IsiHarga" required="" readonly class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label>Qty</label>
@@ -143,7 +144,7 @@ fa-trash-o"></i>&nbsp;&nbsp;Hapus</button></td></tr> -->
                                 <td>
                                 <input type="text" name="total_hidden" value="" readonly>
                                 <input type="hidden" name="max_hidden" value="">
-                                <button type="button" class="btn btn-primary" id="save"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                
                                 </td>
                             </tr>
                         </tfoot>

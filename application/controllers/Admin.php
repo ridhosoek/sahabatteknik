@@ -252,24 +252,30 @@ class Admin extends CI_Controller {
 
     public function tambahpenjualan(){
         // $data["user"] = $this->user_model->getAll();
+       
+        $this->load->view('include/admin/header.php');
         $data["barang"] = $this->barang_model->getAll();
         $data["pelanggan"] = $this->pelanggan_model->getAll();
-        $this->load->view('include/admin/header.php');
+
+        $penjualan = $this->penjualan_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($penjualan->rules());
+        
+        if ($validation->run()) {
+            
+            $penjualan->save();
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+        }
+
         $this->load->view('transaksi/penjualan/tambah_penjualan',$data);
         $this->load->view('include/admin/footer.php');
     }
 
-    public function get_barang(){
-        $kode=$this->input->post('ID_BARANG');
-        $data=$this->penjualan_model->get_data_barang_bykode($kode);
-        echo json_encode($data);
-    }
-
-    public function cariBarang(){
+       public function cariBarang(){
         $idbarang=$_GET['idbarang'];
         $cari =$this->penjualan_model->getBarangById($idbarang)->result();
         echo json_encode($cari);
-    } 
+        } 
 
     public function persediaan(){
          // $data["user"] = $this->user_model->getAll();
