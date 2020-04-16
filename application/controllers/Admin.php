@@ -265,6 +265,12 @@ class Admin extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function cariBarang(){
+        $idbarang=$_GET['idbarang'];
+        $cari =$this->penjualan_model->getBarangById($idbarang)->result();
+        echo json_encode($cari);
+    } 
+
     public function persediaan(){
          // $data["user"] = $this->user_model->getAll();
          $this->load->view('include/admin/header.php');

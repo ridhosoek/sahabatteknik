@@ -55,15 +55,15 @@
     <form method="post" enctype="multipart/form-data" >
         <div class="form-group">
             <label>Total Penjualan</label>
-            <input type="text" name="total_hidden" value="" readonly class="form-control">
+            <input type="text" name="total_hidden" id="total_penjualan" value="" readonly class="form-control">
         </div>
         <div class="form-group">
             <label>Jumlah Bayar</label>
-            <input type="text" name="satuan" name="tanggal" value="" class="form-control">
+            <input type="text" name="jumlahbayar" id="jumlah_bayar" value="" onkeyup="sum();" class="form-control">
         </div>
         <div class="form-group">
             <label>Kembalian</label>
-            <input type="text" name="iduser" required="" class="form-control">
+            <input type="text" name="kembali" id="kembalian" required="" class="form-control">
         </div>
     </form>
 </div>
@@ -87,7 +87,7 @@
             <form method="post" enctype="multipart/form-data" >
                 <div class="form-group col-md-6">
                     <label>Nama Barang</label>
-                    <select name="namabarang[]" id="namaBarang" class="form-control" >
+                    <select name="namabarang[]" id="namaBarang" class="form-control" onchange="autofill();" >
                         <option value="">- pilih -</option>
                         <?php foreach ($barang as $data): ?>
                         <option value="<?php echo $data->ID_BARANG ?>"><?php echo $data->NAMA_BARANG ?></option>
@@ -251,31 +251,9 @@ penggunaan id barang ke nama barang-->
             var total = $("input[name='total_hidden']").val();
             var savePenjualan = {penjualan, total};
 
-            })
+        })
 
-        });
-
-		$('#namaBarang').on('change',function(){
-                 
-				 var kode=$(this).val();
-				 $.ajax({
-					 type : "POST",
-					 url  : "<?php echo base_url();?>admin/get_barang/",
-					 dataType : "JSON",
-					 data : {kode: kode},
-					 cache:false,
-					 success: function(data){
-						 $.each(data,function(harga, satuan){
-							 $('[name="harga"]').val(data.harga);
-							 $('[name="satuan"]').val(data.satuan);
-							  
-						 });
-						  
-					 }
-				 });
-				 return false;
-
-    })
+    });
 
     function remove(id , harga) {
         $(id).remove();
@@ -283,5 +261,34 @@ penggunaan id barang ke nama barang-->
         $("input[name='total_hidden']").val(total);
     }
 
+	function sum() {
+      var totalpenjualan = document.getElementById('total_penjualan').value;
+      var jumlahbayar = document.getElementById('jumlah_bayar').value;
+      var result =  parseInt(jumlahbayar) - parseInt(totalpenjualan);
+      if (!isNaN(result)) {
+         document.getElementById('kembalian').value = result;
+      }
+    }
+
+    function autofill(){
+        var idBarang =document.getElementById('namaBarang').value;
+        $.ajax({
+                       url:"<?php echo base_url();?>admin/cariBarang?idbarang="+idBarang,
+                    //    data:'?idbarang='+idBarang,
+                       success:function(data){
+                        var hasil = JSON.parse(data);  
+                     
+                                $.each(hasil, function(key,val){ 
+                                    console.log(val)
+                                    document.getElementById('satuan').value=val.SATUAN;
+                                    document.getElementById('hargaj').value=val.HARGA;  
+                                        
+                                    });
+                                console.log(hasil)
+                                }
+                            
+                   });
+                   
+    }
 
 </script>

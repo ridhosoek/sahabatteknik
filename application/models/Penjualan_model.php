@@ -56,17 +56,10 @@ class Penjualan_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
-    function get_data_barang_bykode($kode){
-        $hsl=$this->db->query("SELECT * FROM barang WHERE ID_BARANG='$kode'");
-        if($hsl->num_rows()>0){
-            foreach ($hsl->result() as $data) {
-                $hasil=array(
-                    'harga' => $data->HARGA,
-                    'satuan' => $data->SATUAN,
-                    );
-            }
-        }
-        return $hasil;
+    public function getBarangById($id)
+    {
+        $query= $this->db->get_where('barang',array('ID_BARANG'=>$id));
+        return $query;
     }
     
  
