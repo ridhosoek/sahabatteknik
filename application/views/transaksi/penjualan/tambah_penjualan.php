@@ -291,5 +291,7 @@ penggunaan id barang ke nama barang-->
                    });
                    
     }
-
+    $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
 </script>
