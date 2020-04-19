@@ -3,6 +3,7 @@
 class Penjualan_model extends CI_Model
 {
     private $_table = "penjualan"; //nama tabel
+    private $_tableD = "penjualandetail"; //nama tabel
     // nama kolom di tabel, harus sama huruf besar dan huruf kecilnya!
     public $ID_PENJUALAN;
     public $TANGGAL;
@@ -12,6 +13,13 @@ class Penjualan_model extends CI_Model
     public $BAYAR;
     public $KEMBALIAN;
     public $TANGGAL_INPUT;
+
+    // detail penjualan
+    public $ID_BARANG;
+    public $SATUAN;
+    public $HARGA;
+    public $QTY;
+    public $SUBTOTAL;
 
 
     public function rules()
@@ -76,6 +84,31 @@ class Penjualan_model extends CI_Model
         $this->TANGGAL_INPUT = $post["tanggal"];
     
         return $this->db->insert($this->_table, $this);
+    }
+
+    public function saveDetail()
+    {
+        $post = $this->input->post();
+        $this->ID_PENJUALAN = $post["idpenjualan"];
+        $this->ID_BARANG = $post["tanggal"];
+        $this->ID_PELANGGAN = $post["idpelanggan"];
+        $this->ID_USER = $post["iduser"];
+        $this->TOTAL = $post["total_hidden"];
+        $this->BAYAR = $post["jumlahbayar"];
+        $this->KEMBALIAN = $post["kembali"];
+        $this->TANGGAL_INPUT = $post["tanggal"];
+    
+        return $this->db->insert($this->_table, $this);
+
+        $dt = array(
+			'id_penjualan_m' => $id_master,
+			'id_barang	' => $id_barang,
+			'jumlah_beli' => $jumlah_beli,
+			'harga_satuan' => $harga_satuan,
+			'total' => $sub_total
+		);
+
+		return $this->db->insert('penjualan_detail', $dt);
     }
  
 }

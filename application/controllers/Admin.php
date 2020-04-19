@@ -271,11 +271,11 @@ class Admin extends CI_Controller {
         $this->load->view('include/admin/footer.php');
     }
 
-       public function cariBarang(){
+    public function cariBarang(){
         $idbarang=$_GET['idbarang'];
         $cari =$this->penjualan_model->getBarangById($idbarang)->result();
         echo json_encode($cari);
-        } 
+    } 
 
     public function persediaan(){
          // $data["user"] = $this->user_model->getAll();

@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label>Tanggal</label>
-                    <input type="date" class="form-control" name="date_out" value="<?php echo isset($itemOutData->date_out) ? set_value('date_out', date('Y-m-d', strtotime($itemOutData->date_out))) : set_value('date_out'); ?>">
+                    <input type="date" class="form-control" name="tanggal">
                 </div>
                 <!-- <div class="form-group">
                     <input type="hidden" name="tanggalinput" value="<?= date('d/m/Y') ?>" readonly required="" hidden class="form-control">
@@ -71,7 +71,7 @@
         </div>
         <input class="btn btn-success" type="submit" name="btn" value="Save" />
         <a href="<?php echo base_url();?>admin/penjualan/" class="btn btn-danger">Kembali</a>
-    </form>
+    <!-- </form> -->
 </div>
 <!-- /.box-body -->
 </div>
@@ -85,7 +85,7 @@
         <h3 class="box-title"><i class="fa fa-tag"></i>Data Barang</h3>
         </div>
         <div class="box-body">
-            <form method="post" enctype="multipart/form-data" >
+            <!-- <form method="post" enctype="multipart/form-data" > -->
                 <div class="form-group col-md-6">
                     <label>Nama Barang</label>
                     <select name="namabarang[]" id="namaBarang" class="form-control" onchange="autofill();" >
