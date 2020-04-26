@@ -3,80 +3,74 @@
     <!-- Main content -->
     <section class="content">
       <!-- COLOR PALETTE -->
-      <div class="row">
-      <div class="col-md-6">
-      <div class="box box-default color-palette-box">
-
-        <div class="box-header with-border">
-        <h5 class="box-title"><i class="fa fa-tag"></i>Data Penjualan</h5>
-        </div>
-        <div class="box-body">
-            <?php if ($this->session->flashdata('success')): ?>
-            <div class="alert alert-success" role="alert">
-            <?php echo $this->session->flashdata('success'); ?>
-            </div>
-            <?php endif; ?>
-            <form method="post" enctype="multipart/form-data" >
-                <div class="form-group">
-                    <label>No Penjualan</label>
-                    <input type="text" name="idpenjualan" value="PJ<?=time() ?>" readonly required="" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Tanggal</label>
-                    <input type="date" class="form-control" name="tanggal">
-                </div>
+        <div class="row">
+        <form method="post" enctype="multipart/form-data" id="simpandata" >
+            <div class="col-md-6">
+                <div class="box box-default color-palette-box">
+                    <div class="box-header with-border">
+                        <h5 class="box-title"><i class="fa fa-tag"></i>Data Penjualan</h5>
+                    </div>
+                <div class="box-body">
+                    <?php if ($this->session->flashdata('success')): ?>
+                    <div class="alert alert-success" role="alert">
+                    <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                    <?php endif; ?>
+            
+                    <div class="form-group">
+                        <label>No Penjualan</label>
+                        <input type="text" id="idpenjualan" name="idpenjualan" value="PJ<?=time() ?>" readonly required="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input type="date" class="form-control" name="tanggal">
+                    </div>
                 <!-- <div class="form-group">
                     <input type="hidden" name="tanggalinput" value="<?= date('d/m/Y') ?>" readonly required="" hidden class="form-control">
                 </div> -->
-                <div class="form-group">
-                    <label>Pelanggan</label>
-                    <select name="idpelanggan" class ="form-control">
-                    <option value="">- pilih -</option>
-                    <?php foreach ($pelanggan as $data): ?>
-                    <option value="<?php echo $data->ID_PELANGGAN ?>"><?php echo $data->NAMA_PELANGGAN ?></option>
-                    <?php endforeach; ?>
-                    </select>
+                    <div class="form-group">
+                        <label>Pelanggan</label>
+                        <select name="idpelanggan" class ="form-control">
+                        <option value="">- pilih -</option>
+                        <?php foreach ($pelanggan as $data): ?>
+                        <option value="<?php echo $data->ID_PELANGGAN ?>"><?php echo $data->NAMA_PELANGGAN ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Kasir</label>
+                        <input type="text" name="iduser" required="" class="form-control">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Kasir</label>
-                    <input type="text" name="iduser" required="" class="form-control">
-                </div>
-
-        <!-- </form> -->
-        </div>
         <!-- /.box-body -->
-    </div>
-      </div>
-
-      <div class="col-md-6">
-      <div class="box box-default color-palette-box">
-
-<div class="box-header with-border">
-<h5 class="box-title"><i class="fa fa-tag"></i>Pembayaran</h5>
-</div>
-<div class="box-body">
-
-    <!-- <form method="post" enctype="multipart/form-data" > -->
-    <div class="form-group">
-            <label>Total Penjualan</label>
-            <input type="text" name="total_hidden" id="total_penjualan" readonly required="" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label>Jumlah Bayar</label>
-            <input type="text" name="jumlahbayar" id="jumlah_bayar" onkeyup="sum();" required="" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Kembalian</label>
-            <input type="text" name="kembali" id="kembalian" required="" class="form-control">
-        </div>
-        <input class="btn btn-success" type="submit" name="btn" value="Save" />
-        <a href="<?php echo base_url();?>admin/penjualan/" class="btn btn-danger">Kembali</a>
-    <!-- </form> -->
-</div>
+
+            <div class="col-md-6">
+            <div class="box box-default color-palette-box">
+                <div class="box-header with-border">
+                <h5 class="box-title"><i class="fa fa-tag"></i>Pembayaran</h5>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>Total Penjualan</label>
+                        <input type="text" name="total_hidden" id="total_penjualan" readonly required="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah Bayar</label>
+                        <input type="text" name="jumlahbayar" id="jumlah_bayar" onkeyup="sum();" required="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Kembalian</label>
+                        <input type="text" name="kembali" id="kembalian" required="" class="form-control">
+                    </div>
+                    <input class="btn btn-success" type="submit" id="submit" name="btn" value="Save" />
+                    <a href="<?php echo base_url();?>admin/penjualan/" class="btn btn-danger">Kembali</a>
+                </div>
 <!-- /.box-body -->
-</div>
-      </div>
-      </div>
+            </div>
+            </div>
+        </div>
 
 
     <div class="box box-default color-palette-box">
@@ -91,10 +85,14 @@
                     <select name="namabarang[]" id="namaBarang" class="form-control" onchange="autofill();" >
                         <option value="">- pilih -</option>
                         <?php foreach ($barang as $data): ?>
-                        <option value="<?php echo $data->ID_BARANG ?>"><?php echo $data->NAMA_BARANG ?></option>
+                        <option value="<?php echo $data->ID_BARANG ?>"id="<?=$data->QTY?>"><?php echo $data->NAMA_BARANG ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <!-- <div class="form-group col-md-6">
+                    <label>Qty Tersedia</label> -->
+                    <input type="hidden" name="qtytersedia" id="qtytersedia" placeholder="" required="" readonly class="form-control" >
+                <!-- </div> -->
                 <div class="form-group col-md-6">
                     <label>Satuan</label>
                     <input type="text" name="satuan" id="satuan" placeholder="IsiSatuan" required="" readonly class="form-control" >
@@ -105,7 +103,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>Qty</label>
-                    <input type="number" id="qty" placeholder="isiqty" required="" class="form-control">
+                    <input type="number" id="qty" placeholder="isiqty" required="" class="form-control" name="qtydiminta">
                 </div>
                 <div class="form-group col-md-6">
                     <label>Harga Jual</label>
@@ -114,6 +112,11 @@
                 <div class="form-group col-1">
                     <label for="">&nbsp;</label>
                     <button type="button" class="btn btn-primary btn-block" id="tambah" ><i class="fa fa-plus"></i></button>
+                </div>
+
+                <div class="form-group col-1">
+                    <label for="">&nbsp;</label>
+                    <button type="button" class="btn btn-primary btn-block" id="save"><i class="fa fa-plus"></i></button>
                 </div>
                 <div class="keranjang" div>
                     <table class="table table-bordered" id="keranjang">
@@ -139,20 +142,22 @@ fa-trash-o"></i>&nbsp;&nbsp;Hapus</button></td></tr> -->
                             <tr>
                                 <td colspan="4" align="right"><strong>Total : </strong></td>
                                 <td id="total">
-                                    <!-- <input type="text" name="total" readonly> -->
+                                    <!-- <input type="text"
+name="total" readonly> -->
                                 </td>
                                 <td>
                                 <input type="text" name="total_hidden" value="" readonly>
                                 <input type="hidden" name="max_hidden" value="">
-                                
+
                                 </td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
-            </form>
+            
         </div>
         <!-- /.box-body -->
+        </form>
     </div>
 
     </section>
@@ -167,13 +172,25 @@ penggunaan id barang ke nama barang-->
             var penjualan = {};
             var idBarang = $('#namaBarang option:selected').val();
             var namaBarang = $('#namaBarang option:selected').text();
+            var qtyTersedia = $("input[name='qtytersedia']" ).val();
+            var qtyDiminta = $("input[name='qtydiminta']" ).val();
 
             if ($('#id'+idBarang).length == 1) {
-                alert('sudah ada');
+                alert('sudah ada ' );
             } else {
-                if(idBarang == '') {
+                if(idBarang ==  '') {
                     alert("Pilih Barang Dahulu");
-                } else {
+                }
+                else if(qtyDiminta > qtyTersedia){
+                    alert("Qty Tersedia "+qtyTersedia);
+                    return false;
+                }
+                else if(qtyDiminta < 1){
+                    alert("Qty harus lebih > 0 ");
+                    return false;
+                }
+                else {
+                    var idpenjualan = $('#idpenjualan').val();
                     var satuanBarang = $('#satuan').val();
                     var hargaBarang = $('#harga').val();
                     var qtyBarang = $('#qty').val();
@@ -182,6 +199,7 @@ penggunaan id barang ke nama barang-->
                     var tambah_keranjang;
                     tambah_keranjang = '<tr id="id'+idBarang+'">';
                     //pindah ke array
+                    tambah_keranjang += '<input type="hidden" name="idpenjualan[]" value="'+idpenjualan+'"/>';
                     tambah_keranjang += '<input type="hidden" name="idbarang[]" value="'+idBarang+'"/>';
                     tambah_keranjang += '<input type="hidden" name="hargabarang[]" value="'+hargaBarang+'"/>';
                     tambah_keranjang += '<input type="hidden" name="qtybarang[]" value="'+qtyBarang+'"/>';
@@ -211,9 +229,19 @@ penggunaan id barang ke nama barang-->
                 // $('#total').append(total);
                 $('#keranjang').append(tambah_keranjang);
             }
+
+            
+
         });
 
-        $('#save').on('click', function(){
+        //  $('#submit').on('click', function(){
+        $("#submit").click(function() {
+
+            var idpenjualan = [];
+            $( "input[name='idpenjualan[]']" ).each(function() {
+                idpenjualan.push($( this ).val());
+            });
+
             var idBarang = [];
             $( "input[name='idbarang[]']" ).each(function() {
                 idBarang.push($( this ).val());
@@ -241,6 +269,7 @@ penggunaan id barang ke nama barang-->
             var penjualan = [];
             for (var i = 0, len = idBarang.length; i < len; i++) {
                 penjualan.push({
+                    "idpenjualan" : idpenjualan[i],
                     "idBarang" : idBarang[i],
                     "hargaBarang" : hargaBarang[i],
                     "hargaJual" : hargaJual[i],
@@ -251,9 +280,28 @@ penggunaan id barang ke nama barang-->
             }
             var total = $("input[name='total_hidden']").val();
             var savePenjualan = {penjualan, total};
+            
+            var datadetail = { 'data_table' : penjualan };
+            $.ajax({
 
-        })
+                data : datadetail,
+                type : 'POST',
+                url : "<?php echo base_url();?>admin/tambahpenjualan",
+                crossOrigin : false,
+                dataType : 'json',
+                success : function(result){
+                    if(result.status == "Success"){
+                        alert("Berhasil Simpan");
+                    }else{
+                        alert("Gagal Simpan");
+                    }
 
+                }
+            });
+            // event.preventDefault();
+        });
+     
+       
     });
 
     function remove(id , harga) {
@@ -262,7 +310,7 @@ penggunaan id barang ke nama barang-->
         $("input[name='total_hidden']").val(total);
     }
 
-	function sum() {
+    function sum() {
       var totalpenjualan = document.getElementById('total_penjualan').value;
       var jumlahbayar = document.getElementById('jumlah_bayar').value;
       var result =  parseInt(jumlahbayar) - parseInt(totalpenjualan);
@@ -274,24 +322,21 @@ penggunaan id barang ke nama barang-->
     function autofill(){
         var idBarang =document.getElementById('namaBarang').value;
         $.ajax({
-                       url:"<?php echo base_url();?>admin/cariBarang?idbarang="+idBarang,
-                    //    data:'?idbarang='+idBarang,
-                       success:function(data){
-                        var hasil = JSON.parse(data);  
-                     
-                                $.each(hasil, function(key,val){ 
-                                    console.log(val)
-                                    document.getElementById('satuan').value=val.SATUAN;
-                                    document.getElementById('hargaj').value=val.HARGA;  
-                                        
-                                    });
-                                console.log(hasil)
-                                }
-                            
-                   });
-                   
+            url:"<?php echo base_url();?>admin/cariBarang?idbarang="+idBarang,
+        //    data:'?idbarang='+idBarang,
+            success:function(data){
+            var hasil = JSON.parse(data);
+                $.each(hasil, function(key,val){
+                    console.log(val)
+                    document.getElementById('satuan').value=val.SATUAN;
+                    document.getElementById('hargaj').value=val.HARGA;
+                    document.getElementById('qtytersedia').value=val.QTY;
+                    });
+                // console.log(hasil)
+            }
+
+        });
+
     }
-    $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
+
 </script>

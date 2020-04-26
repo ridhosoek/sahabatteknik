@@ -14,14 +14,6 @@ class Penjualan_model extends CI_Model
     public $KEMBALIAN;
     public $TANGGAL_INPUT;
 
-    // detail penjualan
-    public $ID_BARANG;
-    public $SATUAN;
-    public $HARGA;
-    public $QTY;
-    public $SUBTOTAL;
-
-
     public function rules()
     {
         return [
@@ -86,29 +78,28 @@ class Penjualan_model extends CI_Model
         return $this->db->insert($this->_table, $this);
     }
 
-    public function saveDetail()
+    public function saveDetail($detail_data)
     {
-        $post = $this->input->post();
-        $this->ID_PENJUALAN = $post["idpenjualan"];
-        $this->ID_BARANG = $post["tanggal"];
-        $this->ID_PELANGGAN = $post["idpelanggan"];
-        $this->ID_USER = $post["iduser"];
-        $this->TOTAL = $post["total_hidden"];
-        $this->BAYAR = $post["jumlahbayar"];
-        $this->KEMBALIAN = $post["kembali"];
-        $this->TANGGAL_INPUT = $post["tanggal"];
-    
-        return $this->db->insert($this->_table, $this);
+        for ($x = 0; $x< count($detail_data); $x++){
+            $data[] = array(
+                'ID_PENJUALAN' => $detail_data[$x]['idpenjualan'],
+                'ID_BARANG' => $detail_data[$x]['idBarang'],
+                'HARGAMODAL' => $detail_data[$x]['hargaBarang'],
+                'HARGA' => $detail_data[$x]['hargaJual'],
+                'QTY' => $detail_data[$x]['qtyBarang'],
+                'SATUAN' => $detail_data[$x]['satuanBarang'],
+                'SUBTOTAL' => $detail_data[$x]['subTotal'],
+            );
+        }
 
-        $dt = array(
-			'id_penjualan_m' => $id_master,
-			'id_barang	' => $id_barang,
-			'jumlah_beli' => $jumlah_beli,
-			'harga_satuan' => $harga_satuan,
-			'total' => $sub_total
-		);
-
-		return $this->db->insert('penjualan_detail', $dt);
+        try {
+            for ($x = 0; $x< count($detail_data); $x++){
+                $this->db->insert('penjualan_detail',$data[$x]);
+            }
+            return 'Success';
+        } catch (Exception $e) {
+            return 'failed';
+        }
     }
  
 }

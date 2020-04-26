@@ -257,13 +257,28 @@ class Admin extends CI_Controller {
         $data["barang"] = $this->barang_model->getAll();
         $data["pelanggan"] = $this->pelanggan_model->getAll();
 
+        // $this->output->set_content_type('application/json');
+        $this->load->model('Penjualan_model');
+        $detail_data = $this->input->post('data_table');
+        $status = $this->Penjualan_model->saveDetail($detail_data);
+        // $penjualan->saveDetail($detail_data);
+
         $penjualan = $this->penjualan_model;
         $validation = $this->form_validation;
         $validation->set_rules($penjualan->rules());
         
+        
         if ($validation->run()) {
             
             $penjualan->save();
+            // simpan ke detail
+            
+            // $this->load->model('Penjualan_model');
+            // $detail_data = $this->input->post('data_table');
+            // $status = $this->Penjualan_model->saveDetail($detail_data);
+           
+            //echo json_encode(array('status' => $penjualan));
+
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 
