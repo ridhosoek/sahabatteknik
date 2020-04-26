@@ -101,5 +101,15 @@ class Penjualan_model extends CI_Model
             return 'failed';
         }
     }
+
+    public function getAllPenjualan()
+    {
+        $this->db->select('penjualan.ID_PENJUALAN,penjualan.TANGGAL,pelanggan.NAMA_PELANGGAN,penjualan.ID_USER,penjualan.TOTAL,penjualan.BAYAR,penjualan.KEMBALIAN');
+        $this->db->join('pelanggan', 'pelanggan.ID_PELANGGAN = penjualan.ID_PELANGGAN');
+        $this->db->from('penjualan');
+        $query = $this->db->get();
+        return $query->result();
+       
+    }
  
 }

@@ -21,6 +21,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                <th scope="col">No.</th>
                 <th scope="col">No. Transaksi</th>
                 <th scope="col">Tanggal</th>
                 <th scope="col">Pelanggan</th>
@@ -33,31 +34,34 @@
                 </tr>
             </thead>
             <tbody>
-            
+            <?php foreach ($penjualan as $data=>$ndata): ?>
             <tr>
+                <td width="50">
+								  <?php echo ($data+1) ?>
+								</td>
                 <td width="150">
-								 
+                  <?php echo $ndata->ID_PENJUALAN ?>
 								</td>
 								<td width="150">
-								
+                  <?php echo $ndata->TANGGAL ?>
                 </td>
                 <td width="200">
-								
+								  <?php echo $ndata->NAMA_PELANGGAN ?>
                 </td>
                 <td>
-									
+                  <?php echo $ndata->ID_USER ?>
                 </td>
                 <td>
-									
+                  <?php echo $ndata->TOTAL ?>
                 </td>
                 <td>
-									
+								  <?php echo $ndata->BAYAR ?>
                 </td>
                 <td>
-									
+                  <?php echo $ndata->KEMBALIAN ?>
                 </td>
                 <td>
-                <a href="#"><i class="fa fa-eye"></i></a>
+                  <a href="#"><i class="fa fa-eye"></i></a>
                 </td>
                 <td>
                 <a href=#>
@@ -65,6 +69,7 @@
                     <a onclick="" href="#!" class="btn btn-danger btn-xs">Hapus</a>
                 </td>
             </tr>
+            <?php endforeach; ?>
            </tbody>
             <p>
                 <a href="<?php echo base_url();?>admin/tambahpenjualan/" class="btn btn-primary">Tambah Data</a>
