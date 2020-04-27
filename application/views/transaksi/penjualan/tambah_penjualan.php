@@ -114,10 +114,10 @@
                     <button type="button" class="btn btn-primary btn-block" id="tambah" ><i class="fa fa-plus"></i></button>
                 </div>
 
-                <div class="form-group col-1">
+                <!-- <div class="form-group col-1">
                     <label for="">&nbsp;</label>
                     <button type="button" class="btn btn-primary btn-block" id="save"><i class="fa fa-plus"></i></button>
-                </div>
+                </div> -->
                 <div class="keranjang" div>
                     <table class="table table-bordered" id="keranjang">
                         <thead>
