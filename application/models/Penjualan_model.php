@@ -3,7 +3,7 @@
 class Penjualan_model extends CI_Model
 {
     private $_table = "penjualan"; //nama tabel
-    private $_tableD = "penjualandetail"; //nama tabel
+    private $_tableD = "penjualan_detail"; //nama tabel
     // nama kolom di tabel, harus sama huruf besar dan huruf kecilnya!
     public $ID_PENJUALAN;
     public $TANGGAL;
@@ -110,6 +110,20 @@ class Penjualan_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
        
+    }
+
+    // public function getByBarangPenjualan($id)
+    // {
+    //     return $this->db->get_where($this->_tableD, ["ID_PENJUALAN" => $id])->row();
+    // }
+
+    public function getByBarangPenjualan()
+    {
+        $this->db->select('penjualan_detail.ID_PENJUALAN,penjualan_detail.ID_BARANG,barang.NAMA_BARANG,penjualan_detail.SATUAN,penjualan_detail.QTY,penjualan_detail.HARGAMODAL,penjualan_detail.HARGA,penjualan_detail.SUBTOTAL');
+        $this->db->join('barang', 'barang.ID_BARANG = penjualan_detail.ID_BARANG');
+        $this->db->from('penjualan_detail');
+        $query = $this->db->get();
+        return $query->result();
     }
  
 }

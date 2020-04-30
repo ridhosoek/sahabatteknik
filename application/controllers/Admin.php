@@ -245,6 +245,7 @@ class Admin extends CI_Controller {
 
     public function penjualan(){
         $data["penjualan"] = $this->penjualan_model->getAllPenjualan();
+        $data["penjualandetail"] = $this->penjualan_model->getByBarangPenjualan();
         $this->load->view('include/admin/header.php');
         $this->load->view('transaksi/penjualan/data_penjualan',$data);
         $this->load->view('include/admin/footer.php');

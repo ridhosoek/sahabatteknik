@@ -61,7 +61,7 @@
                   <?php echo $ndata->KEMBALIAN ?>
                 </td>
                 <td>
-                  <a href="#"><i class="fa fa-eye"></i></a>
+                  <a href="#" data-toggle="modal" data-target="#modal-detail"><i class="fa fa-eye"></i></a>
                 </td>
                 <td>
                 <a href=#>
@@ -85,11 +85,49 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" arial-label="Close">
+                      <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title">Detail Penjualan</h4>
                   </div>
                   <div class="modal-body table-responsive">
+                    <table class="table table-bordered table-striped" id="table">
+                      <thead>
+                        <h5>No Penjualan</h5>
+                        <tr>
+                          <td>Nama Barang</td>
+                          <td>Qty</td>
+                          <td>Satuan</td>
+                          <td>Harga Modal</td>
+                          <td>Harga Jual</td>
+                          <td>Subtotal</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php foreach ($penjualandetail as $data): ?>
+                        <tr>
+                          <td>
+                          <?php echo $data->NAMA_BARANG ?>
+                          </td>
+                          <td>
+                          <?php echo $data->QTY ?>
+                          </td>
+                          <td>
+                          <?php echo $data->SATUAN ?>
+                          </td>
+                          <td>
+                          <?php echo $data->HARGAMODAL ?>
+                          </td>
+                          <td>
+                          <?php echo $data->HARGA ?>
+                          </td>
+                          <td>
+                          <?php echo $data->SUBTOTAL ?>
+                          </td>
 
+                        </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
