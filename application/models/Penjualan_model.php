@@ -112,10 +112,15 @@ class Penjualan_model extends CI_Model
        
     }
 
-    // public function getByBarangPenjualan($id)
-    // {
-    //     return $this->db->get_where($this->_tableD, ["ID_PENJUALAN" => $id])->row();
-    // }
+    public function delete($id)
+    {
+        return $this->db->delete($this->_table, array("ID_PENJUALAN" => $id));
+    }
+
+    public function deletepenjualan($id)
+    {
+        return $this->db->delete($this->_tableD, array("ID_PENJUALAN" => $id));
+    }
 
     public function getByBarangPenjualan()
     {

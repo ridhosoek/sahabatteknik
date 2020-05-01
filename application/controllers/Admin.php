@@ -251,6 +251,7 @@ class Admin extends CI_Controller {
         $this->load->view('include/admin/footer.php');
     }
 
+   
     public function tambahpenjualan(){
         // $data["user"] = $this->user_model->getAll();
        
@@ -287,24 +288,59 @@ class Admin extends CI_Controller {
         $this->load->view('include/admin/footer.php');
     }
 
+    public function deletepenjualan($id=null)
+    {
+        if (!isset($id)) show_404();
+        
+        if ($this->penjualan_model->delete($id)) {
+            $this->penjualan_model->deletepenjualan($id);
+            $data["penjualan"] = $this->penjualan_model->getAllPenjualan();
+            $data["penjualandetail"] = $this->penjualan_model->getByBarangPenjualan();
+            $this->load->view('include/admin/header.php');
+            $this->load->view('transaksi/penjualan/data_penjualan',$data);
+            $this->load->view('include/admin/footer.php');
+        }
+    }
+
     public function cariBarang(){
         $idbarang=$_GET['idbarang'];
         $cari =$this->penjualan_model->getBarangById($idbarang)->result();
         echo json_encode($cari);
     } 
 
+    public function cariDetailPenjualan(){
+        $idpenjualan=$_GET['idpenjualan'];
+        $cari =$this->penjualan_model->getByBarangPenjualan($idpenjualan)->result();
+        echo json_encode($cari);
+    } 
+
     public function persediaan(){
-         // $data["user"] = $this->user_model->getAll();
+        $data["persediaan"] = $this->persediaan_model->getAll();
+        $data["persediaandetail"] = $this->persediaan_model->getByBarangpersediaan();
          $this->load->view('include/admin/header.php');
-         $this->load->view('transaksi/persediaan/data_persediaan');
+         $this->load->view('transaksi/persediaan/data_persediaan',$data);
          $this->load->view('include/admin/footer.php');
     }
 
     public function tambahpersediaan(){
-        // $data["user"] = $this->user_model->getAll();
+
         $dataBrg["barang"] = $this->barang_model->getAll();
         $this->load->view('include/admin/header.php');
         $this->load->view('transaksi/persediaan/tambah_persediaan',$dataBrg);
         $this->load->view('include/admin/footer.php');
+    }
+
+    public function deletepersediaan($id=null)
+    {
+        if (!isset($id)) show_404();
+        
+        if ($this->persediaan_model->delete($id)) {
+            $this->persediaan_model->deletepersediaan($id);
+            $data["persedian"] = $this->persediaan_model->getAll();
+            $data["persediaandetail"] = $this->persediaan_model->getByBarangPersediaan();
+            $this->load->view('include/admin/header.php');
+            $this->load->view('transaksi/persediaan/data_persediaan',$data);
+            $this->load->view('include/admin/footer.php');
+        }
     }
 }

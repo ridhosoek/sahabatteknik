@@ -61,12 +61,12 @@
                   <?php echo $ndata->KEMBALIAN ?>
                 </td>
                 <td>
-                  <a href="#" data-toggle="modal" data-target="#modal-detail"><i class="fa fa-eye"></i></a>
+                  <a data-toggle="modal" data-target="#modal-detail" ><i class="fa fa-eye"></i></a>
                 </td>
                 <td>
                 <a href=#>
                     <button type="button" class="btn btn-primary btn-xs">Edit</button></a>
-                    <a onclick="" href="#!" class="btn btn-danger btn-xs">Hapus</a>
+                    <a onclick="deleteConfirm('<?php echo site_url('admin/deletepenjualan/'.$ndata->ID_PENJUALAN) ?>')" href="#!" class="btn btn-danger btn-xs">Hapus</a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -135,3 +135,10 @@
 
     <!-- /.content -->
   </div>
+<script>
+    function deleteConfirm(url){
+	    $('#btn-delete').attr('href', url);
+	    $('#deleteModal').modal();
+      }
+</script>
+  

@@ -4,6 +4,7 @@
     <section class="content">
       <!-- COLOR PALETTE -->
 	  <div class="row">
+	  <form method="post" enctype="multipart/form-data" >
 	  <div class="col-md-6">
 	  <div class="box box-default color-palette-box">
 
@@ -16,7 +17,7 @@
 		    <?php echo $this->session->flashdata('success'); ?>
 		    </div>
 		    <?php endif; ?>
-            <form method="post" enctype="multipart/form-data" >
+            
                 <div class="form-group">
                     <label>No Persediaan</label>
                     <input type="text" name="idpersediaan" value="PR<?= time() ?>" readonly class="form-control">
@@ -33,7 +34,7 @@
                     <label>Total Persediaan</label>
                     <input type="text" name="total" required="" class="form-control">
                 </div>
-            </form>
+            <!-- </form> -->
         </div>
         <!-- /.box-body -->
     </div>
@@ -51,7 +52,7 @@
 		    <?php echo $this->session->flashdata('success'); ?>
 		    </div>
 		    <?php endif; ?>
-            <form method="post" enctype="multipart/form-data" >
+            
                 <div class="form-group col-md-6">
                     <label>Nama Barang</label>
                     <select name="namabarang[]" id="namaBarang" class ="form-control" >
@@ -77,15 +78,13 @@
 					<label for="">&nbsp;</label>
 					<button type="button" class="btn btn-primary btn-block" id="tambah" ><i class="fa fa-plus"></i></button>
 				</div>
-                
-            </form>
+           
         </div>
 <!-- /.box-body -->
-</div>
-	  </div>
-	  </div>
+		</div>
+	</div>
+ </div>
     
-
     <div class="box box-default color-palette-box">
 		<div class="keranjang" div>
 					<table class="table table-bordered" id="keranjang">
@@ -114,7 +113,7 @@
 						</tfoot>
 					</table>
 				</div>
-        
+			</form>
         <!-- /.box-body -->
     </div>
       
