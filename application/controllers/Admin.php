@@ -12,6 +12,7 @@ class Admin extends CI_Controller {
         $this->load->model("penjualan_model");
         $this->load->model("persediaan_model");
         $this->load->library('form_validation');
+        $this->load->library('pdf');
     }
 
     public function index(){
@@ -343,4 +344,37 @@ class Admin extends CI_Controller {
             $this->load->view('include/admin/footer.php');
         }
     }
+
+    public function LaporanBarang()
+	{
+        $pdf = new FPDF('P', 'mm','Letter');
+
+        $pdf->AddPage();
+
+        $pdf->SetFont('Arial','B',16);
+        $pdf->Cell(0,7,'DAFTAR BARANG',0,1,'C');
+        $pdf->Cell(10,7,'',0,1);
+
+        $pdf->SetFont('Arial','B',10);
+
+        $pdf->Cell(8,6,'No',1,0,'C');
+        $pdf->Cell(100,6,'Nama Barang',1,0,'C');
+        $pdf->Cell(60,6,'Satuan',1,0,'C');
+        $pdf->Cell(35,6,'Harga',1,0,'C');
+        $pdf->Cell(15,6,'Stok',1,1,'C');
+
+        $pdf->SetFont('Arial','',10);
+        $barang = $this->db->get('barang')->result();
+        $no=0;
+        foreach ($barang as $data){
+            $pdf->Cell(8,6,$no,1,0);
+            $pdf->Cell(100,6,$data->NAMA_BARANG,1,0);
+            $pdf->Cell(100,6,$data->SATUAN,1,0);
+            $pdf->Cell(35,6,"Rp ".number_format($data->HARGA, 0, ".", "."),1,0);
+            $pdf->Cell(15,6,$data->QTY,1,1);
+            $no++;
+        }
+        $pdf->Output();
+	}
+
 }
