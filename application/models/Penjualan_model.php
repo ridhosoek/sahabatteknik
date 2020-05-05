@@ -95,6 +95,11 @@ class Penjualan_model extends CI_Model
         try {
             for ($x = 0; $x< count($detail_data); $x++){
                 $this->db->insert('penjualan_detail',$data[$x]);
+                $idbarang = $detail_data[$x]['idBarang'];
+                $jumlah = $detail_data[$x]['qtyBarang'];
+                $qty = $this->barang_model->getStok($idbarang)->QTY;
+                $rumus = max($qty - $jumlah,0);
+                $kurangstok = $this->barang_model->kurangstok($idbarang, $rumus);
             }
             return 'Success';
         } catch (Exception $e) {

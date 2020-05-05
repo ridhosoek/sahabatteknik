@@ -93,4 +93,18 @@ class Barang_model extends CI_Model
     {
         return $this->db->delete($this->_table, array("ID_BARANG" => $id));
     }
+
+    public function getStok($id)
+	{
+		$this->db->select('QTY');
+		$this->db->where('ID_BARANG', $id);
+		return $this->db->get('barang')->row();
+	}
+
+    public function kurangstok($id,$qty)
+	{
+		$this->db->where('ID_BARANG', $id);
+		$this->db->set('QTY', $qty);
+		return $this->db->update('barang');
+	}
 }

@@ -325,9 +325,34 @@ class Admin extends CI_Controller {
 
     public function tambahpersediaan(){
 
-        $dataBrg["barang"] = $this->barang_model->getAll();
         $this->load->view('include/admin/header.php');
-        $this->load->view('transaksi/persediaan/tambah_persediaan',$dataBrg);
+        $data["barang"] = $this->barang_model->getAll();
+
+        // $this->output->set_content_type('application/json');
+        $this->load->model('Persediaan_model');
+        $detail_data = $this->input->post('data_table');
+        $status = $this->Persediaan_model->saveDetail($detail_data);
+        // $penjualan->saveDetail($detail_data);
+
+        $persediaan = $this->persediaan_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($persediaan->rules());
+                
+        if ($validation->run()) {
+            
+            $persediaan->save();
+            // simpan ke detail
+            
+            // $this->load->model('Penjualan_model');
+            // $detail_data = $this->input->post('data_table');
+            // $status = $this->Penjualan_model->saveDetail($detail_data);
+           
+            //echo json_encode(array('status' => $penjualan));
+
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+        }
+
+        $this->load->view('transaksi/persediaan/tambah_persediaan',$data);
         $this->load->view('include/admin/footer.php');
     }
 
