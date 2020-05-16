@@ -31,7 +31,7 @@
               <label>Kelompok</label>
               <select name="idkelompok" class ="form-control">
 	            <?php foreach ($kelompok as $data): ?>
-                <option <?php if($data->ID_KELOMPOK == "your desired id"){ echo 'selected="selected"'; } ?> value="<?php echo $data->ID_KELOMPOK ?>"><?php echo $data->category?></option>
+                <option value="<?php echo $data->ID_KELOMPOK ?>"><?php echo $data->NAMA_KELOMPOK ?></option>
               <?php endforeach; ?>
 	            </select>
             </div>

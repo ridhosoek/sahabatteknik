@@ -68,6 +68,13 @@ class Persediaan_model extends CI_Model
         try {
             for ($x = 0; $x< count($detail_data); $x++){
                 $this->db->insert('persediaan_detail',$data[$x]);
+                $idbarang = $detail_data[$x]['idBarang'];
+                $jumlah = $detail_data[$x]['qtyBarang'];
+                $hargabarang = $detail_data[$x]['hargaJual'];
+                $qty = $this->barang_model->getStok($idbarang)->QTY;
+                $rumus = max($qty + $jumlah,0);
+                $kurangstok = $this->barang_model->kurangstok($idbarang, $rumus);
+                $ubahharga = $this->barang_model->ubahharga($idbarang, $hargabarang);
             }
             return 'Success';
         } catch (Exception $e) {

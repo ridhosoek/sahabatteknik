@@ -80,6 +80,7 @@ class Admin extends CI_Controller {
 
     public function barang(){
         $data["barang"] = $this->barang_model->getAllBarang();
+        
         $this->load->view('include/admin/header.php');
         $this->load->view('master/barang/data_barang',$data);
         $this->load->view('include/admin/footer.php');
@@ -108,6 +109,7 @@ class Admin extends CI_Controller {
         if (!isset($id)) redirect('master/barang');
        
         $barang = $this->barang_model;
+        $kelompok = $this->kelompok_model;
         $validation = $this->form_validation;
         $validation->set_rules($barang->rules());
 
@@ -117,6 +119,7 @@ class Admin extends CI_Controller {
         }
 
         $data["barang"] = $barang->getById($id);
+        $data["kelompok"] = $kelompok->getAll();
         if (!$data["barang"]) show_404();
      
         $this->load->view("master/barang/edit_barang", $data);
@@ -127,7 +130,7 @@ class Admin extends CI_Controller {
         if (!isset($id)) show_404();
         
         if ($this->barang_model->delete($id)) {
-            $data["barang"] = $this->barang_model->getAll();
+            $data["barang"] = $this->barang_model->getAllBarang();
             $this->load->view('include/admin/header.php');
             $this->load->view('master/barang/data_barang',$data);
             $this->load->view('include/admin/footer.php');

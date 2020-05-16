@@ -99,12 +99,21 @@ class Barang_model extends CI_Model
 		$this->db->select('QTY');
 		$this->db->where('ID_BARANG', $id);
 		return $this->db->get('barang')->row();
-	}
+    }
+    
 
     public function kurangstok($id,$qty)
 	{
 		$this->db->where('ID_BARANG', $id);
 		$this->db->set('QTY', $qty);
 		return $this->db->update('barang');
-	}
+    }
+
+    public function ubahharga($id,$harga)
+	{
+		$this->db->where('ID_BARANG', $id);
+		$this->db->set('HARGA', $harga);
+		return $this->db->update('barang');
+    }
+    
 }
