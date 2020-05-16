@@ -118,9 +118,9 @@
             
         </div>
         <!-- /.box-body -->
-        </form>
+        
     </div>
-
+    </form>
     </section>
     <!-- /.content -->
 </div>
@@ -151,25 +151,25 @@ penggunaan id barang ke nama barang-->
                     var qtyBarang = $('#qty').val();
                     var hargaJual = $('#hargaj').val();
 
-                    var tambah_keranjang;
-                    tambah_keranjang = '<tr id="id'+idBarang+'">';
+                    var tambah_cart;
+                    tambah_cart = '<tr id="id'+idBarang+'">';
                     //pindah ke array
-                    tambah_keranjang += '<input type="hidden" name="idpersediaan[]" value="'+idpersediaan+'"/>';
-                    tambah_keranjang += '<input type="hidden" name="idbarang[]" value="'+idBarang+'"/>';
-                    tambah_keranjang += '<input type="hidden" name="qtybarang[]" value="'+qtyBarang+'"/>';
-                    tambah_keranjang += '<input type="hidden" name="satuanbarang[]" value="'+satuanBarang+'"/>';
-                    tambah_keranjang += '<input type="hidden" name="hargajual[]" value="'+hargaJual+'"/>';
-                    tambah_keranjang += '<input type="hidden" name="subtotal[]" value="'+parseInt(hargaJual) * parseInt(qtyBarang) +'"/>';
+                    tambah_cart += '<input type="hidden" name="idpersediaan[]" value="'+idpersediaan+'"/>';
+                    tambah_cart += '<input type="hidden" name="idbarang[]" value="'+idBarang+'"/>';
+                    tambah_cart += '<input type="hidden" name="qtybarang[]" value="'+qtyBarang+'"/>';
+                    tambah_cart += '<input type="hidden" name="satuanbarang[]" value="'+satuanBarang+'"/>';
+                    tambah_cart += '<input type="hidden" name="hargajual[]" value="'+hargaJual+'"/>';
+                    tambah_cart += '<input type="hidden" name="subtotal[]" value="'+parseInt(hargaJual) * parseInt(qtyBarang) +'"/>';
                     //
 
-                    tambah_keranjang += '<td>'+namaBarang+'</td>';
-                    tambah_keranjang += '<td>'+hargaJual+'</td>';
-                    tambah_keranjang += '<td>'+qtyBarang+'</td>';
-                    tambah_keranjang += '<td>'+satuanBarang+'</td>';
-                    tambah_keranjang += '<td>'+parseInt(hargaJual) * parseInt(qtyBarang) +'</td>';
-                    tambah_keranjang += '<input type="hidden" class="subtotal" name = "subtotal" value="'+parseInt(hargaJual) * parseInt(qtyBarang) +'" />'
-                    tambah_keranjang += '<td><button type="button" class="btn btn-danger" onclick="remove(id'+ idBarang +','+ parseInt(hargaJual) * parseInt(qtyBarang)+')"><i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Hapus</button></td>';
-                    tambah_keranjang += '</tr>';
+                    tambah_cart += '<td>'+namaBarang+'</td>';
+                    tambah_cart += '<td>'+hargaJual+'</td>';
+                    tambah_cart += '<td>'+qtyBarang+'</td>';
+                    tambah_cart += '<td>'+satuanBarang+'</td>';
+                    tambah_cart += '<td>'+parseInt(hargaJual) * parseInt(qtyBarang) +'</td>';
+                    tambah_cart += '<input type="hidden" class="subtotal" name = "subtotal" value="'+parseInt(hargaJual) * parseInt(qtyBarang) +'" />'
+                    tambah_cart += '<td><button type="button" class="btn btn-danger" onclick="remove(id'+ idBarang +','+ parseInt(hargaJual) * parseInt(qtyBarang)+')"><i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Hapus</button></td>';
+                    tambah_cart += '</tr>';
                 }
                 var total = parseInt(hargaJual) * parseInt(qtyBarang);
                 $(".subtotal").each(function(){
@@ -180,10 +180,8 @@ penggunaan id barang ke nama barang-->
                 })
                 $("input[name='total_hidden']").val(total);
                 // $('#total').append(total);
-                $('#keranjang').append(tambah_keranjang);
+                $('#keranjang').append(tambah_cart);
             }
-
-            
 
         });
 
@@ -215,21 +213,23 @@ penggunaan id barang ke nama barang-->
             $( "input[name='subtotal[]']" ).each(function() {
                 subTotal.push($( this ).val());
             });
-            var persediaan = [];
+            var persediaandetail = [];
             for (var i = 0, len = idBarang.length; i < len; i++) {
-                persediaan.push({
-                    "idpersediaan" : idpersedian[i],
+                persediaandetail.push({
+                    "idpersediaan" : idpersediaan[i],
                     "idBarang" : idBarang[i],
-                    "hargaJual" : hargaJual[i],
                     "qtyBarang" : qtyBarang[i],
                     "satuanBarang" : satuanBarang[i],
+                    "hargaJual" : hargaJual[i],
                     "subTotal" : subTotal[i]
                 })
             }
             var total = $("input[name='total_hidden']").val();
-            var savePersediaan = {persediaan, total};
+            var savePersediaan = {persediaandetail, total};
             
-            var datadetail = { 'data_table' : persediaan };
+
+            var datadetail = { 'data_table' : persediaandetail };
+            console.log("ajax");
             $.ajax({
 
                 data : datadetail,
@@ -238,12 +238,15 @@ penggunaan id barang ke nama barang-->
                 crossOrigin : false,
                 dataType : 'json',
                 success : function(result){
+                    console.log(result)
                     if(result.status == "Success"){
                         alert("Berhasil Simpan");
                     }else{
                         alert("Gagal Simpan");
                     }
 
+                },error:function(err){
+                    console.log(err)
                 }
             });
             // event.preventDefault();

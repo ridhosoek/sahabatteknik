@@ -17,7 +17,7 @@ class Persediaan_model extends CI_Model
     {
         return [
             ['field' => 'idpersediaan',
-            'label' => 'id persediaan',
+            'label' => 'ID Persediaan',
             'rules' => 'required'],
 
             ['field' => 'tanggal',
@@ -28,7 +28,7 @@ class Persediaan_model extends CI_Model
             'label' => 'id user',
             'rules' => 'required'],
 
-            ['field' => 'total',
+            ['field' => 'total_hidden',
             'label' => 'total',
             'rules' => 'required'],
             
@@ -58,9 +58,9 @@ class Persediaan_model extends CI_Model
             $data[] = array(
                 'ID_PERSEDIAAN' => $detail_data[$x]['idpersediaan'],
                 'ID_BARANG' => $detail_data[$x]['idBarang'],
-                'HARGA' => $detail_data[$x]['hargaJual'],
                 'QTY' => $detail_data[$x]['qtyBarang'],
                 'SATUAN' => $detail_data[$x]['satuanBarang'],
+                'HARGA' => $detail_data[$x]['hargaJual'],
                 'SUBTOTAL' => $detail_data[$x]['subTotal'],
             );
         }

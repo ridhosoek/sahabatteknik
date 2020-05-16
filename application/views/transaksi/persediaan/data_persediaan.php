@@ -48,9 +48,6 @@
               <td >
               <?php echo $ndata->TOTAL ?>
               <td>
-                <a href="#"><i class="fa fa-eye"></i></a>
-              </td>
-              <td>
                   <a data-toggle="modal" data-target="#modal-detail" ><i class="fa fa-eye"></i></a>
               </td>
               <td>
