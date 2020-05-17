@@ -100,6 +100,16 @@ class Persediaan_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function getPersediaanID($idpersediaan)
+    {
+        $this->db->select('persediaan_detail.ID_PERSEDIAAN,persediaan_detail.ID_BARANG,barang.NAMA_BARANG,persediaan_detail.SATUAN,persediaan_detail.QTY,persediaan_detail.HARGA,persediaan_detail.SUBTOTAL');
+        $this->db->join('barang', 'barang.ID_BARANG = persediaan_detail.ID_BARANG');
+        $this->db->from('persediaan_detail');
+        $this->db->where('persediaan_detail.ID_PERSEDIAAN', $idpersediaan);
+        $query = $this->db->get();
+        return $query->result();
+    }
     
  
 }

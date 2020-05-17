@@ -372,29 +372,182 @@ class Admin extends CI_Controller {
         $pdf->AddPage();
 
         $pdf->SetFont('Arial','B',16);
+        $pdf->Cell(0,7,'CV SAHABAT TEKNIK',0,1,'C');
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(0,7,'Jl Mahkamah No 24 Medan',0,1,'C');
+        $pdf->Cell(0,7,'==============================================================================',0,1,'C');
+        $pdf->Cell(10,7,'',0,1);
+
+        $pdf->SetFont('Arial','B',14);
         $pdf->Cell(0,7,'DAFTAR BARANG',0,1,'C');
         $pdf->Cell(10,7,'',0,1);
 
         $pdf->SetFont('Arial','B',10);
 
         $pdf->Cell(8,6,'No',1,0,'C');
-        $pdf->Cell(100,6,'Nama Barang',1,0,'C');
-        $pdf->Cell(60,6,'Satuan',1,0,'C');
-        $pdf->Cell(35,6,'Harga',1,0,'C');
+        $pdf->Cell(45,6,'Kelompok',1,0,'C');
+        $pdf->Cell(75,6,'Nama Barang',1,0,'C');
+        $pdf->Cell(20,6,'Satuan',1,0,'C');
+        $pdf->Cell(30,6,'Harga',1,0,'C');
         $pdf->Cell(15,6,'Stok',1,1,'C');
 
         $pdf->SetFont('Arial','',10);
-        $barang = $this->db->get('barang')->result();
-        $no=0;
+        $barang = $this->barang_model->getAllBarang();
+        $no=1;
         foreach ($barang as $data){
             $pdf->Cell(8,6,$no,1,0);
-            $pdf->Cell(100,6,$data->NAMA_BARANG,1,0);
-            $pdf->Cell(100,6,$data->SATUAN,1,0);
-            $pdf->Cell(35,6,"Rp ".number_format($data->HARGA, 0, ".", "."),1,0);
-            $pdf->Cell(15,6,$data->QTY,1,1);
+            $pdf->Cell(45,6,$data->NAMA_KELOMPOK,1,0);
+            $pdf->Cell(75,6,$data->NAMA_BARANG,1,0);
+            $pdf->Cell(20,6,$data->SATUAN,1,0);
+            $pdf->Cell(30,6,"Rp ".number_format($data->HARGA, 0, ".", "."),1,0,'R');
+            $pdf->Cell(15,6,$data->QTY,1,1,'R');
             $no++;
         }
-        $pdf->Output();
+        $pdf->Output('I','databarang.pdf');
+    }
+    
+    public function LaporanPenjualan()
+	{
+        $pdf = new FPDF('P', 'mm','Letter');
+
+        $pdf->AddPage();
+
+        $pdf->SetFont('Arial','B',16);
+        $pdf->Cell(0,7,'CV SAHABAT TEKNIK',0,1,'C');
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(0,7,'Jl Mahkamah No 24 Medan',0,1,'C');
+        $pdf->Cell(0,7,'==============================================================================',0,1,'C');
+        $pdf->Cell(10,7,'',0,1);
+
+        $pdf->SetFont('Arial','B',14);
+        $pdf->Cell(0,7,'LAPORAN PENJUALAN',0,1,'C');
+        $pdf->Cell(10,7,'',0,1);
+        
+
+        $penjualan = $this->penjualan_model->getAllPenjualan();
+        $no=1;
+        foreach ($penjualan as $data){
+            $pdf->SetFont('Arial','B',10);
+            $pdf->Cell(0,6,"No Penjualan : " .$data->ID_PENJUALAN,0,1);
+            $pdf->Cell(0,6,"Tanggal : " .$data->TANGGAL,0,1);
+            $pdf->Cell(0,6,"Pelanggan : " .$data->NAMA_PELANGGAN,0,1);
+
+            $pdf->SetFont('Arial','B',10);
+            $pdf->Cell(8,6,'No',1,0,'C');
+            $pdf->Cell(60,6,'Nama Barang',1,0,'C');
+            $pdf->Cell(20,6,'Satuan',1,0,'C');
+            $pdf->Cell(27,6,'Harga Modal',1,0,'C');
+            $pdf->Cell(27,6,'Harga Jual',1,0,'C');
+            $pdf->Cell(15,6,'Qty',1,0,'C');
+            $pdf->Cell(30,6,'Sub Total',1,1,'C');
+
+            $pdf->SetFont('Arial','',10);
+            $barang = $this->penjualan_model->getPenjualanID($data->ID_PENJUALAN);
+            $no=1;
+            foreach ($barang as $datas){
+                $pdf->Cell(8,6,$no,1,0);
+                $pdf->Cell(60,6,$datas->NAMA_BARANG,1,0);
+                $pdf->Cell(20,6,$datas->SATUAN,1,0);
+                $pdf->Cell(27,6,"Rp ".number_format($datas->HARGAMODAL, 0, ".", "."),1,0,'R');
+                $pdf->Cell(27,6,"Rp ".number_format($datas->HARGA, 0, ".", "."),1,0,'R');
+                $pdf->Cell(15,6,$datas->QTY,1,0,'R');
+                $pdf->Cell(30,6,"Rp ".number_format($datas->SUBTOTAL, 0, ".", "."),1,1,'R');
+                $no++;
+            }
+            $pdf->Cell(8,6,"",0,0);
+            $pdf->Cell(60,6,"",0,0);
+            $pdf->Cell(20,6,"",0,0);
+            $pdf->Cell(27,6,"",0,0,'R');
+            $pdf->Cell(27,6,"",0,0,'R');
+            $pdf->SetFont('Arial','B',11);
+            $pdf->Cell(15,6,"Total : ",0,0,'R');
+            $pdf->Cell(30,6,"Rp ".number_format($data->TOTAL, 0, ".", "."),0,1,'R');
+
+            $pdf->Cell(8,6,"",0,0);
+            $pdf->Cell(60,6,"",0,0);
+            $pdf->Cell(20,6,"",0,0);
+            $pdf->Cell(27,6,"",0,0,'R');
+            $pdf->Cell(27,6,"",0,0,'R');
+            $pdf->SetFont('Arial','B',11);
+            $pdf->Cell(15,6,"Bayar : ",0,0,'R');
+            $pdf->Cell(30,6,"Rp ".number_format($data->BAYAR, 0, ".", "."),0,1,'R');
+
+            $pdf->Cell(8,6,"",0,0);
+            $pdf->Cell(60,6,"",0,0);
+            $pdf->Cell(20,6,"",0,0);
+            $pdf->Cell(27,6,"",0,0,'R');
+            $pdf->Cell(27,6,"",0,0,'R');
+            $pdf->SetFont('Arial','B',11);
+            $pdf->Cell(15,6,"Kembalian : ",0,0,'R');
+            $pdf->Cell(30,6,"Rp ".number_format($data->KEMBALIAN, 0, ".", "."),0,1,'R');
+
+            $pdf->Cell(0,7,'',0,1,'C');
+            $no++;
+        }
+
+        
+        $pdf->Output('I','laporanpenjualan.pdf');
+    }
+    
+    public function LaporanPersediaan()
+	{
+        $pdf = new FPDF('P', 'mm','Letter');
+
+        $pdf->AddPage();
+
+        $pdf->SetFont('Arial','B',16);
+        $pdf->Cell(0,7,'CV SAHABAT TEKNIK',0,1,'C');
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(0,7,'Jl Mahkamah No 24 Medan',0,1,'C');
+        $pdf->Cell(0,7,'==============================================================================',0,1,'C');
+        $pdf->Cell(10,7,'',0,1);
+
+        $pdf->SetFont('Arial','B',14);
+        $pdf->Cell(0,7,'LAPORAN PERSEDIAAN',0,1,'C');
+        $pdf->Cell(10,7,'',0,1);
+        
+
+        $persediaan = $this->persediaan_model->getAll();
+        $no=1;
+        foreach ($persediaan as $data){
+            $pdf->SetFont('Arial','B',10);
+            $pdf->Cell(0,6,"No Persediaan : " .$data->ID_PERSEDIAAN,0,1);
+            $pdf->Cell(0,6,"Tanggal : " .$data->TANGGAL,0,1);
+
+            $pdf->SetFont('Arial','B',10);
+            $pdf->Cell(8,6,'No',1,0,'C');
+            $pdf->Cell(80,6,'Nama Barang',1,0,'C');
+            $pdf->Cell(30,6,'Satuan',1,0,'C');
+            $pdf->Cell(27,6,'Harga',1,0,'C');
+            $pdf->Cell(15,6,'Qty',1,0,'C');
+            $pdf->Cell(30,6,'Sub Total',1,1,'C');
+
+            $pdf->SetFont('Arial','',10);
+            $barang = $this->persediaan_model->getpersediaanID($data->ID_PERSEDIAAN);
+            $no=1;
+            foreach ($barang as $datas){
+                $pdf->Cell(8,6,$no,1,0);
+                $pdf->Cell(80,6,$datas->NAMA_BARANG,1,0);
+                $pdf->Cell(30,6,$datas->SATUAN,1,0);
+                $pdf->Cell(27,6,"Rp ".number_format($datas->HARGA, 0, ".", "."),1,0,'R');
+                $pdf->Cell(15,6,$datas->QTY,1,0,'R');
+                $pdf->Cell(30,6,"Rp ".number_format($datas->SUBTOTAL, 0, ".", "."),1,1,'R');
+                $no++;
+            }
+            $pdf->Cell(8,6,"",0,0);
+            $pdf->Cell(80,6,"",0,0);
+            $pdf->Cell(30,6,"",0,0);
+            $pdf->Cell(27,6,"",0,0,'R');
+            $pdf->SetFont('Arial','B',11);
+            $pdf->Cell(15,6,"Total : ",0,0,'R');
+            $pdf->Cell(30,6,"Rp ".number_format($data->TOTAL, 0, ".", "."),0,1,'R');
+
+            $pdf->Cell(0,7,'',0,1,'C');
+            $no++;
+        }
+
+        
+        $pdf->Output('I','laporanpersediaan.pdf');
 	}
 
 }

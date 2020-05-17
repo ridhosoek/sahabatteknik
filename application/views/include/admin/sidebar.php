@@ -37,8 +37,8 @@
                   </a>
                   <ul class="treeview-menu">
                     <li><a href="<?php echo base_url();?>admin/LaporanBarang"><i class="fa fa-circle-o text-aqua"></i>Laporan Barang</a></li>
-                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Laporan Penjualan</a></li>
-                    <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-circle-o text-aqua"></i>Laporan Persediaan</a></li>
+                    <li><a href="<?php echo base_url();?>admin/LaporanPenjualan"><i class="fa fa-circle-o text-aqua"></i>Laporan Penjualan</a></li>
+                    <li><a href="<?php echo base_url();?>admin/LaporanPersediaan"><i class="fa fa-circle-o text-aqua"></i>Laporan Persediaan</a></li>
 
                   </ul>
                </li>
