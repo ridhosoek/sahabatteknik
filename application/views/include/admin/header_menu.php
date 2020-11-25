@@ -24,7 +24,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="https://via.placeholder.com/150" class="user-image" alt="User Image">
                   <span class="hidden-xs">
-                    Username
+                  <?php echo $this->session->userdata("nama"); ?>
                   </span>
                 </a>
                   <ul class="dropdown-menu">
@@ -41,7 +41,9 @@
                      </div>
 
                     <div class="pull-right">
-                      <a href="<?php echo base_url().@$logout; ?>" class="btn btn-default btn-flat">Sign out</a>
+                      <!-- <a href="<?php echo base_url().@$logout; ?>" class="btn btn-default btn-flat">Sign out</a> -->
+                      <a href="<?php echo base_url('login/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+
                     </div>
                   </li>
                 </ul>

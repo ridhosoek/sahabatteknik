@@ -2,6 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
+    // function __construct(){
+	// 	parent::__construct();
+	
+	// 	if($this->session->userdata('status') != "login"){
+	// 		redirect(base_url("login_page.php"));
+	// 	}
+	// }
+ 
+	// function index(){
+	// 	$this->load->view('v_admin');
+	// }
     public function __construct()
     {
         parent::__construct();
@@ -13,17 +24,34 @@ class Admin extends CI_Controller {
         $this->load->model("persediaan_model");
         $this->load->library('form_validation');
         $this->load->library('pdf');
+        // if($this->session->userdata('status') != "login"){
+        //     // redirect(base_url("login_page.php"));
+        //     $this->load->view("admin/login_page.php");
+        //     print base_url;
+		// }
     }
 
     public function index(){
-        $this->load->view('include/admin/header.php');
-        $this->load->view('admin/index');
-        $this->load->view('include/admin/footer.php');
+        if($this->session->userdata('status') != "login"){
+            // redirect(base_url("login_page.php"));
+            $this->load->view("admin/login_page.php");
+            // print base_url;
+		} else {
+            $this->load->view('include/admin/header.php');
+            $this->load->view('admin/index');
+            $this->load->view('include/admin/footer.php');
+        }
+        // $this->load->view("admin/login_page.php");
+        // if($this->input->post()){
+        //     if($this->user_model->doLogin()) redirect(site_url('admin'));
+        // }
+
     }
 
     public function kelompok(){
         $data["kelompok"] = $this->kelompok_model->getAll();
-        $this->load->view('include/admin/header.php');
+        $this->load->
+        view('include/admin/header.php');
         $this->load->view('master/kelompok/data_kelompok',$data);
         $this->load->view('include/admin/footer.php');
     }
